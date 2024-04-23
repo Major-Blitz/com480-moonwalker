@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Assuming you have imported fullpage.js through npm -->
+    <link rel="stylesheet" href="node_modules/fullpage.js/dist/fullpage.css">
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+
+        /* Style for our header texts
+        * --------------------------------------- */
+        h1{
+            font-size: 5em;
+            font-family: arial,helvetica;
+            color: #fff;
+            margin:0;
+        }
+        .intro p{
+            color: #fff;
+        }
+    
+        /* Centered texts in each section
+        * --------------------------------------- */
+        .section{
+            text-align:center;
+        }
+    
+        /* Overwriting styles for control arrows for slides
+        * --------------------------------------- */
+        .controlArrow.prev {
+            left: 50px;
+        }
+        .controlArrow.next{
+            right: 50px;
+        }
+    
+        /* Overwriting styles for navigation bullets
+        * --------------------------------------- */
+        #fp-nav ul li a span, 
+        .fp-slidesNav ul li a span{
+            background: white;
+        }
+    
+    
+        /* Bottom menu
+        * --------------------------------------- */
+        #infoMenu li a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <div class="intro">
+                <h1>Navigation dots</h1>
+                <p>An easy and beautiful way to navigate through the sections</p>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="slide" id="slide1">
+                <div class="intro">
+                    <h1>Clickable</h1>
+                    <p>
+                        You can even click on the navigation and jump directly to another section.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="slide" id="slide2">
+                <h1>Slide 2</h1>
+            </div>
+    
+        </div>
+        <div class="section" id="section2">
+            <div class="intro">
+                <h1>Enjoy it</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import fullpage.js script -->
+    <script src="node_modules/fullpage.js/dist/fullpage.js"></script>
+
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            anchors: ['firstPage', 'secondPage', '3rdPage'],
+            sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+            navigation: true,
+            navigationPosition: 'right',
+            navigationTooltips: ['First page', 'Second page', 'Third and last page']
+        });
+    </script>
+</body>
+</html>

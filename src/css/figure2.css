@@ -1,0 +1,52 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.bubble text {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 14px;
+    fill: #333;
+    text-anchor: middle;
+}
+
+.axis text {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 12px;
+    fill: #555;
+    text-anchor: middle;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #aaa;
+    shape-rendering: crispEdges;
+}
+
+.bubble circle {
+    transition: transform .2s;
+}
+
+.bubble circle:hover {
+    transform: scale(1.1);
+}
+
+.legend {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.legend-item {
+    margin-right: 20px;  
+    display: inline-block;
+    white-space: nowrap; 
+}
+
+.legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}

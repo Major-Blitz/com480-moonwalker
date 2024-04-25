@@ -7,8 +7,10 @@
     <!-- Assuming you have imported fullpage.js through npm -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.css">
     <link rel="stylesheet" type="text/css" href="examples.css" />
+    <link rel="stylesheet" href="src/css/figure2.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <style>
 
         /* Style for our header texts
@@ -70,15 +72,16 @@
 
         </div>
         <div class="section" id="section3">
-            <div class="intro">
+            <div>
                 <h1>The evolution history of video game platforms</h1>
                 <img src="asset/platform_evolution.jpg" alt="Figure 1" style="display: block; margin: 20px auto; max-height: 50vh;">
             </div>
             
         </div>
         <div class="section" id="section3">
-            <div class="intro">
+            <div>
                 <h1>The popularity among different game genres</h1>
+                <div id="section_figure2"></div>
             </div>
         </div>
         <div class="section" id="section3">
@@ -117,7 +120,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#section_figure4").load("src/figure4.html"); // 添加这行
+            $("#section_figure2").load("src/html/figure2.html"); 
+            $("#section_figure4").load("src/html/figure4.html"); 
         });
         var myFullpage = new fullpage('#fullpage', {
             anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage'],

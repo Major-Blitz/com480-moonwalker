@@ -6,6 +6,7 @@
     <title>Game World</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.css">
     <link rel="stylesheet" type="text/css" href="examples.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/figure2.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     
@@ -79,7 +80,7 @@
         <div class="section" id="section3">
             <div>
                 <h1>The popularity among different game genres</h1>
-                <img src="asset/genres_bubble_chart.png" alt="Figure 1" style="display: block; margin: 20px auto; max-height: 50vh;">
+                <div id="container_2" style="height: 580px; width: 80%; margin: 0 auto"></div>
             </div>
         </div>
         <div class="section" id="section3">
@@ -91,7 +92,7 @@
         <div class="section" id="section3">
             <div class="intro">
                 <h1>Sales performance of game publishers</h1>
-                <div id="container" style="height: 600px; width: 90%;margin-left: 40px"></div>
+                <div id="container_4" style="height: 600px; width: 90%;margin-left: 40px"></div>
             </div>
         </div>
         <div class="section" id="section3">
@@ -114,7 +115,8 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js"></script>
-    <script src="src/figure4.js"></script>
+    <script src="src/js/figure2.js"></script>
+    <script src="src/js/figure4.js"></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
             anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage'],

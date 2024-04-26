@@ -1,0 +1,52 @@
+#container_2 {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+#container_2 .bubble text {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 14px;
+    fill: #333;
+    text-anchor: middle;
+}
+
+#container_2 .axis text {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 12px;
+    fill: #555;
+    text-anchor: middle;
+}
+
+#container_2 .axis path,
+#container_2 .axis line {
+    fill: none;
+    stroke: #aaa;
+    shape-rendering: crispEdges;
+}
+
+#container_2 .bubble circle {
+    transition: transform .2s;
+}
+
+#container_2 .bubble circle:hover {
+    transform: scale(1.1);
+}
+
+#container_2 .legend {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+#container_2 .legend-item {
+    margin-right: 20px;  
+    display: inline-block;
+    white-space: nowrap; 
+}
+
+#container_2 .legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}

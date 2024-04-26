@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="examples.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    
     <style>
 
         /* Style for our header texts
@@ -90,7 +91,7 @@
         <div class="section" id="section3">
             <div class="intro">
                 <h1>Sales performance of game publishers</h1>
-                <img src="asset/bar_race_producer.png" alt="Figure 1" style="display: block; margin: 20px auto; max-height: 50vh;">
+                <div id="container" style="height: 600px; width: 90%;margin-left: 40px"></div>
             </div>
         </div>
         <div class="section" id="section3">
@@ -113,15 +114,16 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js"></script>
-
+    <script src="src/figure4.js"></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
-            anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage'],
+            anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage'],
             sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
             navigation: true,
             navigationPosition: 'right',
             navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth page', 'Fifth page', 'Sixth page']
         });
+        
     </script>
 </body>
 </html>

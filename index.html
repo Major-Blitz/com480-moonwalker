@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.css">
     <link rel="stylesheet" type="text/css" href="examples.css" />
     <link rel="stylesheet" type="text/css" href="src/css/figure2.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/page1.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     
@@ -27,7 +28,14 @@
         /* Centered texts in each section
         * --------------------------------------- */
         .section{
-            text-align:center;
+            text-align: center;
+            height: 100vh; 
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: lightblue; 
         }
     
         /* Overwriting styles for control arrows for slides

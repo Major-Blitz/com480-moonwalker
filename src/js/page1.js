@@ -1,5 +1,4 @@
 d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
-    // calculate how many times platform and genre appear
     let platformCounts = {};
     let genreCounts = {};
     data.forEach(d => {
@@ -7,46 +6,72 @@ d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
         genreCounts[d.Genre] = (genreCounts[d.Genre] || 0) + 1;
     });
 
-    // select top 10 platforms and top 5 genres
     let topPlatforms = Object.entries(platformCounts).sort((a, b) => b[1] - a[1]).slice(0, 10).map(d => d[0]);
     let topGenres = Object.entries(genreCounts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(d => d[0]);
 
-    // filter top 5
     let filteredData = data.filter(d => topPlatforms.includes(d.Platform) && topGenres.includes(d.Genre));
 
     let matrix = createMatrix(filteredData, topGenres, topPlatforms);
 
-    createChordDiagram(matrix, topGenres, topPlatforms);
-});
+    window.globalMatrix = matrix;
+    window.globalGenres = topGenres;
+    window.globalPlatforms = topPlatforms;
 
+    console.log("Matrix:", matrix);
+    updateChordDiagram(matrix, topGenres, topPlatforms);
+});
 
 function createMatrix(data, genres, platforms) {
     const size = genres.length + platforms.length;
-    let matrix = Array.from({length: size}, () => new Array(size).fill(0));
+    let matrix = Array.from({ length: size }, () => new Array(size).fill(0));
 
     data.forEach(game => {
         const genreIndex = genres.indexOf(game.Genre);
-        const platformIndex = platforms.indexOf(game.Platform) + genres.length;  // NOTE: platforms index needs to be shifted
+        const platformIndex = platforms.indexOf(game.Platform) + genres.length;
 
         if (genreIndex !== -1 && platformIndex !== -1) {
             matrix[genreIndex][platformIndex] += parseFloat(game.Global_Sales);
-            matrix[platformIndex][genreIndex] += parseFloat(game.Global_Sales); // create double link
+            matrix[platformIndex][genreIndex] += parseFloat(game.Global_Sales);
         }
     });
 
     return matrix;
 }
 
-function createChordDiagram(matrix, genres, platforms) {
-    const totalGroups = genres.length + platforms.length;
-    const svg = d3.select("#container_1").append("svg")
-        .attr("width", 960)
-        .attr("height", 800)
-        .append("g")
-        .attr("transform", "translate(480, 400)");
+function updateChordDiagram(matrix, genres, platforms) {
+    const container = document.getElementById('container_1');
+    if (!container) {
+        console.error("Container not found");
+        return;
+    }
 
-    const outerRadius = 400;
-    const innerRadius = 380;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    if (width <= 0 || height <= 0) {
+        console.error("Invalid container dimensions:", width, height);
+        return;
+    }
+
+    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+
+    console.log("Width:", width, "Height:", height);
+
+    const outerRadius = Math.min(width, height) / 2 - Math.max(margin.top + margin.bottom, margin.left + margin.right);
+    const innerRadius = outerRadius - 20;
+
+    if (outerRadius <= 0 || innerRadius <= 0) {
+        console.error("Invalid radius values:", outerRadius, innerRadius);
+        return;
+    }
+
+    d3.select("#container_1").select("svg").remove(); // 确保重新绘制时移除旧的SVG
+
+    const svg = d3.select("#container_1").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
     const chord = d3.chord()
         .padAngle(0.05)
@@ -65,31 +90,35 @@ function createChordDiagram(matrix, genres, platforms) {
         .style("fill", d => d3.schemeCategory10[d.source.index % 10])
         .style("stroke", d => d3.rgb(d3.schemeCategory10[d.source.index % 10]).darker());
 
-    const group = svg.append("g")
+    const groups = svg.append("g")
         .attr("class", "groups")
         .selectAll("g")
         .data(chord.groups)
         .enter().append("g");
 
-    group.append("path")
+    groups.append("path")
         .style("fill", d => d3.schemeCategory10[d.index % 10])
         .style("stroke", d => d3.rgb(d3.schemeCategory10[d.index % 10]).darker())
         .attr("d", arc);
 
-    group.append("text")
-        .each(d => { d.angle = (d.startAngle + d.endAngle) / 2; })
+    groups.append("text")
+        .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
         .attr("dy", ".35em")
-        .attr("transform", d => {
+        .attr("transform", function(d) {
             const rotateAngle = (d.angle * 180 / Math.PI - 90);
             const translateDist = outerRadius + 10;
-            return `rotate(${rotateAngle}) translate(${translateDist}) ${rotateAngle > 90 && rotateAngle < 270 ? "rotate(180)" : ""}`;
+            const rotateText = (rotateAngle > 90 && rotateAngle < 270) ? "rotate(180)" : "";
+            const translateY = (rotateAngle > 90 && rotateAngle < 270) ? -16 : 16;
+            return `rotate(${rotateAngle}) translate(${translateDist}) ${rotateText} translate(0, ${translateY})`;
         })
-        .style("text-anchor", "middle")
-        .text(d => {
-            if (d.index < genres.length) {
-                return genres[d.index];  // Genre labels
-            } else {
-                return platforms[d.index - genres.length];  // Platform labels
-            }
-        });
+        .style("text-anchor", function(d) {
+            return (d.angle > Math.PI) ? "end" : "start";
+        })
+        .text(d => d.index < genres.length ? genres[d.index] : platforms[d.index - genres.length]);
 }
+
+window.addEventListener("resize", function() {
+    if (window.globalMatrix && window.globalGenres && window.globalPlatforms) {
+        updateChordDiagram(window.globalMatrix, window.globalGenres, window.globalPlatforms);
+    }
+});

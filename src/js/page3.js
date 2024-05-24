@@ -1,4 +1,8 @@
+let globalData = [];
+
 d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
+    globalData = data;
+
     let platformCounts = {};
     let genreCounts = {};
     data.forEach(d => {
@@ -6,7 +10,7 @@ d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
         genreCounts[d.Genre] = (genreCounts[d.Genre] || 0) + 1;
     });
 
-    let topPlatforms = Object.entries(platformCounts).sort((a, b) => b[1] - a[1]).slice(0, 10).map(d => d[0]);
+    let topPlatforms = Object.entries(platformCounts).sort((a, b) => b[1] - a[1]).slice(0, 7).map(d => d[0]);
     let topGenres = Object.entries(genreCounts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(d => d[0]);
 
     let filteredData = data.filter(d => topPlatforms.includes(d.Platform) && topGenres.includes(d.Genre));
@@ -45,8 +49,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         return;
     }
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    const width = Math.min(window.innerWidth * 0.5, 700);
+    const height = Math.min(window.innerHeight, 600);
 
     if (width <= 0 || height <= 0) {
         console.error("Invalid container dimensions:", width, height);
@@ -88,7 +92,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .enter().append("path")
         .attr("d", ribbon)
         .style("fill", d => d3.schemeCategory10[d.source.index % 10])
-        .style("stroke", d => d3.rgb(d3.schemeCategory10[d.source.index % 10]).darker());
+        .style("stroke", d => d3.rgb(d3.schemeCategory10[d.source.index % 10]).darker())
+        .on("click", handleChordClick);
 
     const groups = svg.append("g")
         .attr("class", "groups")
@@ -122,3 +127,30 @@ window.addEventListener("resize", function() {
         updateChordDiagram(window.globalMatrix, window.globalGenres, window.globalPlatforms);
     }
 });
+
+function handleChordClick(event, d) {
+    console.log(`Clicked chord`);
+
+    const genres = window.globalGenres;
+    const platforms = window.globalPlatforms;
+
+    const genreIndex = d.source.index < genres.length ? d.source.index : d.target.index;
+    const platformIndex = d.source.index < genres.length ? d.target.index - genres.length : d.source.index - genres.length;
+    const genre = genres[genreIndex];
+    const platform = platforms[platformIndex];
+
+    console.log(genre, platform); 
+
+    const filteredGames = globalData.filter(game => game.Genre === genre && game.Platform === platform);
+    const mostPopularGame = filteredGames.reduce((max, game) => max.Global_Sales > game.Global_Sales ? max : game, { Global_Sales: 0 });
+
+    document.getElementById('gameName').textContent = mostPopularGame.Name || "No data";
+    document.getElementById('gameSales').textContent = mostPopularGame.Global_Sales || "No data";
+
+    // 显示信息卡
+    const infoCard = document.getElementById('infoCard');
+    infoCard.style.display = 'block';
+    infoCard.style.left = ''; // 清除可能的左侧定位
+    infoCard.style.right = '10px'; // 保持在右侧
+    infoCard.style.top = '50px'; // 保持顶部位置不变
+}

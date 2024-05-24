@@ -1,9 +1,36 @@
 #container_1 {
-    height: 80vh; 
-    width: 80%;   
-    margin: 0 auto;
+    height: 80vh;
+    width: 55%;   
+    float: left; 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;  /* left align */
     align-items: center;
-    /* background-color: lightgray;  */
+    background-color: lightgray; 
+}
+
+
+@keyframes slideIn {
+    from {
+        right: -300px; /* 从右侧开始滑动 */
+        opacity: 0;
+    }
+    to {
+        right: 10px;
+        opacity: 1;
+    }
+}
+
+#infoCard {
+    animation: slideIn 0.5s ease-out forwards;
+    display: none;
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    top: 50px;
+    right: 10px;
+    width: 300px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    z-index: 100;
 }

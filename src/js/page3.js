@@ -85,21 +85,34 @@ function updateChordDiagram(matrix, genres, platforms) {
     const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
     const ribbon = d3.ribbon().radius(innerRadius);
 
-    svg.append("g")
+    const ribbons = svg.append("g")
         .attr("class", "ribbons")
         .selectAll("path")
         .data(chord)
         .enter().append("path")
         .attr("d", ribbon)
+        .attr("class", "ribbon")
         .style("fill", d => d3.schemeCategory10[d.source.index % 10])
         .style("stroke", d => d3.rgb(d3.schemeCategory10[d.source.index % 10]).darker())
-        .on("click", handleChordClick);
+        .on("click", handleChordClick)
+        .on("mouseover", function(_, d) {
+            d3.selectAll(".ribbon").style("opacity", 0.3);  // All ribbons fade
+            d3.select(this).style("opacity", 1);            // Current ribbon highlighted
+
+            d3.selectAll(".group").each(function(p) {
+                d3.select(this).select("path").style("opacity", (p.index === d.source.index || p.index === d.target.index) ? 1 : 0.3);
+            });
+        })
+        .on("mouseout", function() {
+            d3.selectAll(".ribbon, .group path").style("opacity", 1);
+        });
 
     const groups = svg.append("g")
         .attr("class", "groups")
         .selectAll("g")
         .data(chord.groups)
-        .enter().append("g");
+        .enter().append("g")
+        .attr("class", "group");
 
     groups.append("path")
         .style("fill", d => d3.schemeCategory10[d.index % 10])
@@ -120,6 +133,22 @@ function updateChordDiagram(matrix, genres, platforms) {
             return (d.angle > Math.PI) ? "end" : "start";
         })
         .text(d => d.index < genres.length ? genres[d.index] : platforms[d.index - genres.length]);
+    
+    groups.on("mouseover", function(_, d) {
+        // 设置与arc相关联的所有ribbon的透明度为1
+        d3.selectAll(".ribbon").style("opacity", function(p) {
+            return (p.source.index === d.index || p.target.index === d.index) ? 1 : 0.3;
+        });
+    
+        // 设置所有arc的透明度为0.1，并将当前arc的透明度设置为1
+        d3.selectAll(".group").style("opacity", 0.3);
+        d3.select(this).style("opacity", 1);
+    })
+    .on("mouseout", function() {
+        // 重置所有ribbon和arc的透明度
+        d3.selectAll(".ribbon").style("opacity", 1);
+        d3.selectAll(".group").style("opacity", 1);
+    });
 }
 
 window.addEventListener("resize", function() {
@@ -131,26 +160,38 @@ window.addEventListener("resize", function() {
 function handleChordClick(event, d) {
     console.log(`Clicked chord`);
 
+    // 确定所选的 genre 和 platform
     const genres = window.globalGenres;
     const platforms = window.globalPlatforms;
 
     const genreIndex = d.source.index < genres.length ? d.source.index : d.target.index;
     const platformIndex = d.source.index < genres.length ? d.target.index - genres.length : d.source.index - genres.length;
-    const genre = genres[genreIndex];
-    const platform = platforms[platformIndex];
+    const selectedGenre = genres[genreIndex];
+    const selectedPlatform = platforms[platformIndex];
 
-    console.log(genre, platform); 
+    console.log(selectedGenre, selectedPlatform);
 
-    const filteredGames = globalData.filter(game => game.Genre === genre && game.Platform === platform);
-    const mostPopularGame = filteredGames.reduce((max, game) => max.Global_Sales > game.Global_Sales ? max : game, { Global_Sales: 0 });
+    // 筛选特定平台和类型下的所有游戏
+    const filteredGames = globalData.filter(game => game.Genre === selectedGenre && game.Platform === selectedPlatform);
+    
+    // 寻找销量最高的游戏
+    const mostPopularGame = filteredGames.reduce((max, game) => parseFloat(max.Global_Sales) > parseFloat(game.Global_Sales) ? max : game, { Global_Sales: 0 });
 
-    document.getElementById('gameName').textContent = mostPopularGame.Name || "No data";
-    document.getElementById('gameSales').textContent = mostPopularGame.Global_Sales || "No data";
+    // 更新DOM元素
+    if (mostPopularGame.Name) {
+        document.getElementById('gameTitle').textContent = mostPopularGame.Name;
+        document.getElementById('gameDescription').textContent = `The best-selling ${selectedGenre} game on ${selectedPlatform}.`;
+        document.getElementById('gameGenre').textContent = `Genre: ${selectedGenre}`;
+        document.getElementById('gameSales').textContent = `Sales: $${mostPopularGame.Global_Sales}M`;
+        document.getElementById('gameYear').textContent = `Year: ${mostPopularGame.Year || 'Unknown'}`;
+        document.getElementById('gameImage').src = `/asset/topgames/${mostPopularGame.Name.replace(/[^a-zA-Z0-9]/g, '')}.jpg`;
 
-    // 显示信息卡
+        const infoCard = document.getElementById('infoCard');
+        infoCard.style.display = 'block'; // Make sure the info card is visible
+    } else {
+        console.error("No data available for the selected genre and platform combination.");
+    }
     const infoCard = document.getElementById('infoCard');
-    infoCard.style.display = 'block';
-    infoCard.style.left = ''; // 清除可能的左侧定位
-    infoCard.style.right = '10px'; // 保持在右侧
-    infoCard.style.top = '50px'; // 保持顶部位置不变
+    infoCard.classList.remove('hidden');
+
 }

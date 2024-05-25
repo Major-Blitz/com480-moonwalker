@@ -1,0 +1,35 @@
+Platform: PS2, Genre: Action, Game: Grand Theft Auto - San Andreas, Sales: 20.81 million
+Platform: PS2, Genre: Sports, Game: Madden NFL 2004, Sales: 5.23 million
+Platform: PS2, Genre: Shooter, Game: Medal of Honor - Frontline, Sales: 6.83 million
+Platform: PS2, Genre: Role-Playing, Game: Final Fantasy X, Sales: 8.05 million
+Platform: PS2, Genre: Misc, Game: Guitar Hero II, Sales: 5.12 million
+Platform: X360, Genre: Action, Game: Grand Theft Auto V, Sales: 16.38 million
+Platform: X360, Genre: Sports, Game: Kinect Sports, Sales: 6.24 million
+Platform: X360, Genre: Shooter, Game: Call of Duty - Modern Warfare 3, Sales: 14.76 million
+Platform: X360, Genre: Role-Playing, Game: The Elder Scrolls V - Skyrim, Sales: 8.84 million
+Platform: X360, Genre: Misc, Game: Kinect Adventures!, Sales: 21.82 million
+Platform: PS3, Genre: Action, Game: Grand Theft Auto V, Sales: 21.4 million
+Platform: PS3, Genre: Sports, Game: FIFA 14, Sales: 6.9 million
+Platform: PS3, Genre: Shooter, Game: Call of Duty - Black Ops II, Sales: 14.03 million
+Platform: PS3, Genre: Role-Playing, Game: The Elder Scrolls V - Skyrim, Sales: 6.56 million
+Platform: PS3, Genre: Misc, Game: Minecraft, Sales: 5.42 million
+Platform: Wii, Genre: Action, Game: The Legend of Zelda - Twilight Princess, Sales: 7.31 million
+Platform: Wii, Genre: Sports, Game: Wii Sports, Sales: 82.74 million
+Platform: Wii, Genre: Shooter, Game: Link's Crossbow Training, Sales: 5.0 million
+Platform: Wii, Genre: Role-Playing, Game: Monster Hunter Tri, Sales: 2.25 million
+Platform: Wii, Genre: Misc, Game: Wii Play, Sales: 29.02 million
+Platform: DS, Genre: Action, Game: Pokemon HeartGold Pokemon SoulSilver, Sales: 11.9 million
+Platform: DS, Genre: Sports, Game: Mario & Sonic at the Olympic Games, Sales: 5.14 million
+Platform: DS, Genre: Shooter, Game: Call of Duty 4 - Modern Warfare, Sales: 1.06 million
+Platform: DS, Genre: Role-Playing, Game: Pokemon Diamond Pokemon Pearl, Sales: 18.36 million
+Platform: DS, Genre: Misc, Game: Brain Age - Train Your Brain in Minutes a Day, Sales: 20.22 million
+Platform: PS, Genre: Action, Game: Driver, Sales: 6.27 million
+Platform: PS, Genre: Sports, Game: Tony Hawk's Pro Skater, Sales: 5.02 million
+Platform: PS, Genre: Shooter, Game: 007 - Tomorrow Never Dies, Sales: 3.21 million
+Platform: PS, Genre: Role-Playing, Game: Final Fantasy VII, Sales: 9.72 million
+Platform: PS, Genre: Misc, Game: Namco Museum Vol.3, Sales: 4.05 million
+Platform: PSP, Genre: Action, Game: Grand Theft Auto - Liberty City Stories, Sales: 7.72 million
+Platform: PSP, Genre: Sports, Game: Hot Shots Golf - Open Tee, Sales: 1.96 million
+Platform: PSP, Genre: Shooter, Game: Medal of Honor Heroes, Sales: 2.65 million
+Platform: PSP, Genre: Role-Playing, Game: Monster Hunter Freedom Unite, Sales: 5.5 million
+Platform: PSP, Genre: Misc, Game: Namco Museum Battle Collection, Sales: 1.09 million

@@ -18,10 +18,20 @@
 </head>
 <body>
     <div id="container_1"></div>
-    <div id="infoCard">
-        <strong>Game:</strong> <span id="gameName">N/A</span><br>
-        <strong>Sales:</strong> <span id="gameSales">N/A</span>
-    </div>
+    <div id="infoCard" class="info-card hidden">
+        <div class="card-header">
+            <h2 id="gameTitle">Game Title</h2>
+        </div>
+        <img id="gameImage" src="" alt="Game Image" class="game-image">
+        <div class="card-body">
+            <p id="gameDescription">Description text...</p>
+            <div class="game-details">
+                <span id="gameGenre">Genre: RPG</span>
+                <span id="gameSales">Sales: $1M</span>
+                <span id="gameYear">Year: 2001</span>
+            </div>
+        </div>
+    </div>    
 
     <script src="../js/page3.js"></script>
 </body>

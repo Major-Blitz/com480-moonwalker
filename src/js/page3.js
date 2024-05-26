@@ -43,7 +43,7 @@ function createMatrix(data, genres, platforms) {
 }
 
 function updateChordDiagram(matrix, genres, platforms) {
-    const container = document.getElementById('container_1');
+    const container = document.getElementById('container_3');
     if (!container) {
         console.error("Container not found");
         return;
@@ -69,9 +69,9 @@ function updateChordDiagram(matrix, genres, platforms) {
         return;
     }
 
-    d3.select("#container_1").select("svg").remove(); // 确保重新绘制时移除旧的SVG
+    d3.select("#container_3").select("svg").remove(); // 确保重新绘制时移除旧的SVG
 
-    const svg = d3.select("#container_1").append("svg")
+    const svg = d3.select("#container_3").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")

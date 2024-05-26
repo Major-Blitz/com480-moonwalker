@@ -1,43 +1,59 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
-    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    background-color: #f0f0f0; /* Light grey background color */
+    background-color: #f0f0f0;
 }
 
-#container_3 {
-    width: 50%;
-    height: 100vh;
+.content-container {
+    width: 90%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+#container_3 {
+    width: 56%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: -15px;
 }
 
 #infoSection {
-    width: 50%;
+    width: 44%;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: -15px;
 }
 
 .info-card {
     width: 100%;
-    max-width: 400px;
-    border-radius: 12px; /* Larger border radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
+    max-width: 430px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-    background: linear-gradient(135deg, #ffffff, #e6e6e6); /* Gradient background */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-    margin-bottom: 20px; /* Add space between cards */
+    background: linear-gradient(135deg, #ffffff, #e6e6e6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    font-family: 'Roboto', sans-serif;
 }
 
 .info-card:hover {
-    transform: translateY(-10px); /* Lift on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .info-card.hidden {
@@ -45,18 +61,25 @@ body {
 }
 
 .card-header {
-    background-color: #4CAF50; /* Green header color */
-    border-radius: 12px 12px 0 0; /* Match border radius */
+    background: linear-gradient(to right, blue 50%, red 50%);
+    border-radius: 12px 12px 0 0;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-header h2 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 18px; /* Adjust font size */
+    font-size: 17px;
     margin: 0;
-    color: #ffffff; /* White text color */
+    color: #ffffff;
+    background: none; /* remove default background */
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .card-body {
@@ -65,31 +88,77 @@ body {
 
 .card-body p {
     margin: 0 0 10px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
-    color: #333333; /* Dark text color */
+    color: #333333;
+}
+
+.card-body .subtext {
+    font-size: 14px;
+    color: #555555;
 }
 
 .game-image {
     width: 100%;
     border-radius: 12px;
-    margin: 20px 0; /* More margin around the image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for image */
-    transition: transform 0.3s ease; /* Smooth transition for image */
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .game-image:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
 }
 
-.game-details span {
-    display: block;
-    margin-top: 10px;
-    font-size: 16px; /* Adjust font size */
-    color: #333333; /* Dark text color */
+.game-details span strong {
+    font-weight: bold;
+    color: #4CAF50;
 }
 
 #groupYearLabel {
-    font-weight: bold; /* Make the label bold */
-    color: #555555; /* Slightly lighter color for the label */
+    font-weight: bold;
+    color: #555555;
+}
+
+.game-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中心对齐 */
+}
+
+.game-attributes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* 使其占满容器宽度 */
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333333;
+    gap: 5px; /* 减小间距 */
+}
+
+.sales {
+    color: #8B0000; /* 深红色 */
+    text-align: left; /* 左对齐 */
+    margin-right: 10px; /* 增加右边距 */
+}
+
+.year {
+    color: #00008B; /* 深蓝色 */
+    text-align: right; /* 右对齐 */
+    margin-left: 10px; /* 增加左边距 */
+}
+
+strong {
+    font-weight: bold; /* 显式设置字体加粗 */
+}
+
+.typical-games {
+    font-family: 'Courier New', Courier, monospace; /* 更新字体 */
+    font-size: 18px; /* 调整字体大小 */
+    color: #333333; /* 设置字体颜色 */
+}
+
+.typical-games .game-title {
+    font-size: 14px; /* 缩小游戏名称字体 */
+    color: #666666; /* 设置游戏名称字体颜色 */
 }

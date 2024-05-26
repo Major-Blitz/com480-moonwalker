@@ -9,6 +9,19 @@ var chosen_idx = -1;
 var src_idx = -1,
     tgt_idx = -1;
 
+const colors = [
+    '#ff5733', // bright red
+    '#33ff57', // bright green
+    '#3357ff', // bright blue
+    '#ff33ff', // bright magenta
+    '#ffdb33', // bright yellow
+    '#33ffdb', // bright cyan
+    '#db33ff', // bright violet
+    '#ff8633', // bright orange
+    '#8c33ff', // bright purple
+    '#33aaff'  // bright light blue
+];
+
 const details = {
     "PS": {
         description: "The PlayStation (PS) is a home video game console developed and marketed by Sony Computer Entertainment.",
@@ -266,8 +279,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .enter().append("path")
         .attr("d", ribbon)
         .attr("class", "ribbon")
-        .style("fill", d => d3.schemeCategory10[d.source.index % 10])
-        .style("stroke", d => d3.rgb(d3.schemeCategory10[d.source.index % 10]).darker())
+        .style("fill", d => colors[d.source.index % colors.length])
+        .style("stroke", d => d3.rgb(colors[d.source.index % colors.length]).darker())
         .on("click", chordClickHandler)
         .on("mouseover", chordMouseMove)
         .on("mouseout", mouseout);
@@ -280,8 +293,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .attr("class", "group");
 
     groups.append("path")
-        .style("fill", d => d3.schemeCategory10[d.index % 10])
-        .style("stroke", d => d3.rgb(d3.schemeCategory10[d.index % 10]).darker())
+        .style("fill", d => colors[d.index % colors.length])
+        .style("stroke", d => d3.rgb(colors[d.index % colors.length]).darker())
         .attr("d", arc);
 
     groups.append("text")
@@ -351,7 +364,6 @@ function handleChordClick(event, d) {
     if (mostPopularGame.Name) {
         document.getElementById('gameTitle').textContent = mostPopularGame.Name;
         document.getElementById('gameDescription').textContent = `The best-selling ${selectedGenre} game on ${selectedPlatform}.`;
-        document.getElementById('gameGenre').textContent = `Genre: ${selectedGenre}`;
         document.getElementById('gameSales').textContent = `Sales: $${mostPopularGame.Global_Sales}M`;
         document.getElementById('gameYear').textContent = `Year: ${mostPopularGame.Year || 'Unknown'}`;
         document.getElementById('gameImage').src = `/asset/topgames/${mostPopularGame.Name.replace(/[^a-zA-Z0-9]/g, '')}.jpg`;
@@ -372,3 +384,13 @@ window.addEventListener("load", function() {
     document.getElementById('infoCard').style.display = 'none';
     document.getElementById('defaultInfo').style.display = 'block';
 });
+
+// Add event listener to document for detecting clicks on blank space
+document.addEventListener('click', function(event) {
+    const container = document.getElementById('container_3');
+    const infoCard = document.getElementById('infoCard');
+    
+    if (!container.contains(event.target) && !infoCard.contains(event.target)) {
+        clearFocus();
+    }
+}, true);

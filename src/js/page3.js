@@ -51,13 +51,14 @@ function updateChordDiagram(matrix, genres, platforms) {
 
     const width = Math.min(window.innerWidth * 0.5, 700);
     const height = Math.min(window.innerHeight, 600);
+    const marginLeft = 50; // Adjust this value to control the left margin
 
     if (width <= 0 || height <= 0) {
         console.error("Invalid container dimensions:", width, height);
         return;
     }
 
-    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    const margin = { top: 20, right: 20, bottom: 20, left: marginLeft };
 
     console.log("Width:", width, "Height:", height);
 
@@ -69,13 +70,13 @@ function updateChordDiagram(matrix, genres, platforms) {
         return;
     }
 
-    d3.select("#container_3").select("svg").remove(); // 确保重新绘制时移除旧的SVG
+    d3.select("#container_3").select("svg").remove(); // Ensure old SVG is removed when redrawing
 
     const svg = d3.select("#container_3").append("svg")
-        .attr("width", width)
+        .attr("width", width + marginLeft * 2)
         .attr("height", height)
         .append("g")
-        .attr("transform", `translate(${width / 2}, ${height / 2})`);
+        .attr("transform", `translate(${(width + marginLeft) / 2}, ${height / 2})`);
 
     const chord = d3.chord()
         .padAngle(0.05)
@@ -133,19 +134,19 @@ function updateChordDiagram(matrix, genres, platforms) {
             return (d.angle > Math.PI) ? "end" : "start";
         })
         .text(d => d.index < genres.length ? genres[d.index] : platforms[d.index - genres.length]);
-    
+
     groups.on("mouseover", function(_, d) {
-        // 设置与arc相关联的所有ribbon的透明度为1
+        // Set opacity of all ribbons associated with the arc to 1
         d3.selectAll(".ribbon").style("opacity", function(p) {
             return (p.source.index === d.index || p.target.index === d.index) ? 1 : 0.3;
         });
-    
-        // 设置所有arc的透明度为0.1，并将当前arc的透明度设置为1
+
+        // Set opacity of all arcs to 0.3, and set the current arc's opacity to 1
         d3.selectAll(".group").style("opacity", 0.3);
         d3.select(this).style("opacity", 1);
     })
     .on("mouseout", function() {
-        // 重置所有ribbon和arc的透明度
+        // Reset opacity of all ribbons and arcs
         d3.selectAll(".ribbon").style("opacity", 1);
         d3.selectAll(".group").style("opacity", 1);
     });

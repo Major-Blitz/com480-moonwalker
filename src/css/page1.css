@@ -25,3 +25,9 @@ body {
     fill: steelblue;
     stroke: white;
 }
+
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    fill: #555;
+}

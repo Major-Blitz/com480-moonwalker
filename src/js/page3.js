@@ -212,7 +212,7 @@ function updateChordDiagram(matrix, genres, platforms) {
 
     const width = Math.min(window.innerWidth * 0.5, 700);
     const height = Math.min(window.innerHeight, 600);
-    const marginLeft = 50; // Adjust this value to control the left margin
+    const marginLeft = 20; // Adjust this value to control the left margin
 
     if (width <= 0 || height <= 0) {
         console.error("Invalid container dimensions:", width, height);

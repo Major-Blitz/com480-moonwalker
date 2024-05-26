@@ -3,7 +3,7 @@ body {
     display: flex;
     min-height: 100vh;
     margin: 0;
-    background-color: #f8f8f8; /* Light background color */
+    background-color: #f0f0f0; /* Light grey background color */
 }
 
 #container_3 {
@@ -23,14 +23,21 @@ body {
     justify-content: center;
 }
 
-.info-card, .default-info {
+.info-card {
     width: 100%;
     max-width: 400px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* Larger border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly larger shadow */
     padding: 20px;
     box-sizing: border-box;
-    background-color: #fff; /* White background for cards */
+    background: linear-gradient(135deg, #ffffff, #e6e6e6); /* Gradient background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    margin-bottom: 20px; /* Add space between cards */
+}
+
+.info-card:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
 }
 
 .info-card.hidden {
@@ -38,28 +45,51 @@ body {
 }
 
 .card-header {
-    background-color: #d3a625; /* Color similar to the example */
-    border-radius: 8px 8px 0 0;
-    padding: 10px;
+    background-color: #4CAF50; /* Green header color */
+    border-radius: 12px 12px 0 0; /* Match border radius */
+    padding: 15px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for header */
 }
 
 .card-header h2 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 14px; /* Smaller font size */
+    font-size: 18px; /* Adjust font size */
     margin: 0;
-    color: #fff; /* White text color */
+    color: #ffffff; /* White text color */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333333; /* Dark text color */
 }
 
 .game-image {
     width: 100%;
-    border-radius: 8px;
-    margin: 10px 0; /* Margin around the image */
+    border-radius: 12px;
+    margin: 20px 0; /* More margin around the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for image */
+    transition: transform 0.3s ease; /* Smooth transition for image */
+}
+
+.game-image:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .game-details span {
     display: block;
     margin-top: 10px;
-    font-size: 14px; /* Smaller font size */
-    color: #333; /* Dark text color */
+    font-size: 16px; /* Adjust font size */
+    color: #333333; /* Dark text color */
+}
+
+#groupYearLabel {
+    font-weight: bold; /* Make the label bold */
+    color: #555555; /* Slightly lighter color for the label */
 }

@@ -1,5 +1,14 @@
 let globalData = [];
 
+var isClicked = false;
+
+var groupClicked = false,
+    chordClicked = false;
+
+var chosen_idx = -1;
+var src_idx = -1,
+    tgt_idx = -1;
+
 d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
     globalData = data;
 
@@ -42,6 +51,95 @@ function createMatrix(data, genres, platforms) {
     return matrix;
 }
 
+function groupMouseMove(_, d) {
+    d3.select(this).style("cursor", "pointer");
+    if (!isClicked) {
+        groupFocus(d.index);
+    }
+}
+
+function groupFocus(d) {
+    // Set opacity of all ribbons associated with the arc to 1
+    d3.selectAll(".ribbon").style("opacity", function(p) {
+        return (p.source.index === d || p.target.index === d) ? 1 : 0.3;
+    });
+
+    // Set opacity of all arcs to 0.3, and set the current arc's opacity to 1
+    d3.selectAll(".group").style("opacity", 0.3);
+    d3.selectAll(".group").filter(p => p.index === d).style("opacity", 1);
+}
+
+function unfocus() {
+    d3.selectAll(".ribbon").style("opacity", 1);
+    d3.selectAll(".group").style("opacity", 1);
+}
+
+function clearFocus() {
+    d3.selectAll(".ribbon").style("opacity", 1);
+    d3.selectAll(".group").style("opacity", 1);
+    isClicked = false;
+    groupClicked = false;
+    chordClicked = false;
+    // Show default introduction
+    document.getElementById('infoCard').style.display = 'none';
+    document.getElementById('defaultInfo').style.display = 'block';
+}
+
+function groupClickHandler(_, d) {
+    if (groupClicked && d.index === chosen_idx) {
+        clearFocus();
+    } else {
+        isClicked = true;
+        groupClicked = true;
+        chosen_idx = d.index;
+        handleGroupClick(_, d);
+        d3.select(this).style("cursor", "pointer");
+        groupFocus(d.index);
+    }
+}
+
+function chordClickHandler(_, d) {
+    if (chordClicked &&
+        d.source.index === src_idx &&
+        d.target.index === tgt_idx
+    ) {
+        clearFocus();
+    } else {
+        chordClicked = true;
+        isClicked = true;
+        src_idx = d.source.index;
+        tgt_idx = d.target.index;
+        handleChordClick(_, d);
+        chordFocus(d.source.index, d.target.index);
+    }
+}
+
+function chordMouseMove(_, d) {
+    d3.select(this).style("cursor", "pointer");
+    if (!isClicked) {
+        var srcIdx = d.source.index;
+        var tgtIdx = d.target.index;
+
+        chordFocus(d.source.index, d.target.index);
+    }
+}
+
+function chordFocus(srcIdx, tgtIdx) {
+    d3.selectAll(".ribbon").style("opacity", function(p) {
+        return (p.source.index === srcIdx && p.target.index === tgtIdx) ? 1 : 0.3;
+    });
+
+    d3.selectAll(".group").style("opacity", function(p) {
+        return (p.index === srcIdx || p.index === tgtIdx) ? 1 : 0.3;
+    });
+}
+
+function mouseout() {
+    if (!isClicked) {
+        unfocus();
+    }
+}
+
 function updateChordDiagram(matrix, genres, platforms) {
     const container = document.getElementById('container_3');
     if (!container) {
@@ -78,6 +176,18 @@ function updateChordDiagram(matrix, genres, platforms) {
         .append("g")
         .attr("transform", `translate(${(width + marginLeft) / 2}, ${height / 2})`);
 
+    // Add background rectangle for capturing clicks on empty space
+    svg.append("rect")
+        .attr("width", width + marginLeft * 2)
+        .attr("height", height)
+        .attr("transform", `translate(${-marginLeft}, ${-height / 2})`)
+        .style("fill", "transparent")
+        .on("click", function(event) {
+            if (event.target === this) {
+                clearFocus();
+            }
+        });
+
     const chord = d3.chord()
         .padAngle(0.05)
         .sortSubgroups(d3.descending)
@@ -95,18 +205,9 @@ function updateChordDiagram(matrix, genres, platforms) {
         .attr("class", "ribbon")
         .style("fill", d => d3.schemeCategory10[d.source.index % 10])
         .style("stroke", d => d3.rgb(d3.schemeCategory10[d.source.index % 10]).darker())
-        .on("click", handleChordClick)
-        .on("mouseover", function(_, d) {
-            d3.selectAll(".ribbon").style("opacity", 0.3);  // All ribbons fade
-            d3.select(this).style("opacity", 1);            // Current ribbon highlighted
-
-            d3.selectAll(".group").each(function(p) {
-                d3.select(this).select("path").style("opacity", (p.index === d.source.index || p.index === d.target.index) ? 1 : 0.3);
-            });
-        })
-        .on("mouseout", function() {
-            d3.selectAll(".ribbon, .group path").style("opacity", 1);
-        });
+        .on("click", chordClickHandler)
+        .on("mouseover", chordMouseMove)
+        .on("mouseout", mouseout);
 
     const groups = svg.append("g")
         .attr("class", "groups")
@@ -135,21 +236,9 @@ function updateChordDiagram(matrix, genres, platforms) {
         })
         .text(d => d.index < genres.length ? genres[d.index] : platforms[d.index - genres.length]);
 
-    groups.on("mouseover", function(_, d) {
-        // Set opacity of all ribbons associated with the arc to 1
-        d3.selectAll(".ribbon").style("opacity", function(p) {
-            return (p.source.index === d.index || p.target.index === d.index) ? 1 : 0.3;
-        });
-
-        // Set opacity of all arcs to 0.3, and set the current arc's opacity to 1
-        d3.selectAll(".group").style("opacity", 0.3);
-        d3.select(this).style("opacity", 1);
-    })
-    .on("mouseout", function() {
-        // Reset opacity of all ribbons and arcs
-        d3.selectAll(".ribbon").style("opacity", 1);
-        d3.selectAll(".group").style("opacity", 1);
-    });
+    groups.on("click", groupClickHandler)
+        .on("mouseover", groupMouseMove)
+        .on("mouseout", mouseout);
 }
 
 window.addEventListener("resize", function() {
@@ -187,12 +276,20 @@ function handleChordClick(event, d) {
         document.getElementById('gameYear').textContent = `Year: ${mostPopularGame.Year || 'Unknown'}`;
         document.getElementById('gameImage').src = `/asset/topgames/${mostPopularGame.Name.replace(/[^a-zA-Z0-9]/g, '')}.jpg`;
 
-        const infoCard = document.getElementById('infoCard');
-        infoCard.style.display = 'block'; // Make sure the info card is visible
+        // Show the card and hide the default info
+        document.getElementById('infoCard').style.display = 'block';
+        document.getElementById('defaultInfo').style.display = 'none';
     } else {
         console.error("No data available for the selected genre and platform combination.");
     }
-    const infoCard = document.getElementById('infoCard');
-    infoCard.classList.remove('hidden');
-
 }
+
+function handleGroupClick(_, d) {
+   // Show the group's introduction
+}
+
+window.addEventListener("load", function() {
+    // Initially show default info and hide the info card
+    document.getElementById('infoCard').style.display = 'none';
+    document.getElementById('defaultInfo').style.display = 'block';
+});

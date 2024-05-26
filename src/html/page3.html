@@ -4,35 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The tonality of game genres for each platform</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/page3.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-    </style>
 </head>
 <body>
     <div id="container_3"></div>
-    <div id="infoCard" class="info-card hidden">
-        <div class="card-header">
-            <h2 id="gameTitle">Game Title</h2>
+    <div id="infoSection">
+        <div id="defaultInfo">
+            <h2>The tonality of game genres for each platform</h2>
+            <p>
+                Each year, humans consume more than 400 billion cups of coffee, making it the world's most popular beverage. It makes sense, then, that humans have spent considerable time and energy finding the best possible combinations to highlight and complement the full range of flavor profiles found in a good cup of joe. Coffee's delightfully complex taste opens up a world of possibilities for great food pairings by following a few basic rules.
+            </p>
+            <p>
+                <strong>How to use:</strong> Click on a coffee origin or a food flavor, then detailed information will be presented on the right.
+            </p>
         </div>
-        <img id="gameImage" src="" alt="Game Image" class="game-image">
-        <div class="card-body">
-            <p id="gameDescription">Description text...</p>
-            <div class="game-details">
-                <span id="gameGenre">Genre: RPG</span>
-                <span id="gameSales">Sales: $1M</span>
-                <span id="gameYear">Year: 2001</span>
+        <div id="infoCard" class="info-card hidden">
+            <div class="card-header">
+                <h2 id="gameTitle">Game Title</h2>
+            </div>
+            <img id="gameImage" src="" alt="Game Image" class="game-image">
+            <div class="card-body">
+                <p id="gameDescription">Description text...</p>
+                <div class="game-details">
+                    <span id="gameGenre">Genre: RPG</span>
+                    <span id="gameSales">Sales: $1M</span>
+                    <span id="gameYear">Year: 2001</span>
+                </div>
             </div>
         </div>
-    </div>    
-
+    </div>
     <script src="../js/page3.js"></script>
 </body>
 </html>

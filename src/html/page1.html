@@ -4,70 +4,24 @@
     <meta charset="UTF-8">
     <title>Selected Attribute of Platforms</title>
     <link rel="stylesheet" type="text/css" href="../css/page1.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        #chart-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .tooltip {
-            position: absolute;
-            text-align: center;
-            width: 200px;
-            height: auto;
-            padding: 5px;
-            font: 12px sans-serif;
-            background: lightsteelblue;
-            border: 0px;
-            border-radius: 8px;
-            pointer-events: none;
-        }
-        .line {
-            fill: none;
-            stroke: steelblue;
-            stroke-width: 2px;
-        }
-        .dot {
-            fill: steelblue;
-            stroke: white;
-        }
-        .label {
-            font-size: 12px;
-            font-weight: bold;
-            fill: #555;
-        }
-    </style>
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"></head>
 <body>
+    <div id="background"></div>
     <h1 id="chart-title">Number of Games Released on Platforms</h1>
     <div id="controls">
         <div>
-            <label for="attribute-select">Select Attribute:</label>
+            <label for="attribute-select">Attribute:</label>
             <select id="attribute-select">
                 <option value="Game_Count">Number of Games</option>
                 <option value="Global_Sales">Global Sales</option>
                 <option value="NA_Sales">NA Sales</option>
                 <option value="EU_Sales">EU Sales</option>
-                <option value="JP_Sales">JP Sales</option>
                 <option value="Other_Sales">Other Sales</option>
             </select>
         </div>
         <div>
-            <label for="time-select">Select Time Range:</label>
+            <label for="time-select">Time Range:</label>
             <select id="time-select">
                 <option value="all">All Years</option>
                 <option value="before2000">Before 2000</option>

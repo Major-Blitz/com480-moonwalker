@@ -9,6 +9,69 @@ var chosen_idx = -1;
 var src_idx = -1,
     tgt_idx = -1;
 
+const details = {
+    "PS": {
+        description: "The PlayStation (PS) is a home video game console developed and marketed by Sony Computer Entertainment.",
+        year: "1994",
+        image: "../../../asset/platformImage/PS.jpg"
+    },
+    "PS2": {
+        description: "The PlayStation 2 (PS2) is a home video game console developed and marketed by Sony Computer Entertainment.",
+        year: "2000",
+        image: "../../../asset/platformImage/PS2.jpg"
+    },
+    "PS3": {
+        description: "The PlayStation 3 (PS3) is a home video game console developed and marketed by Sony Computer Entertainment.",
+        year: "2006",
+        image: "../../../asset/platformImage/PS3.jpg"
+    },
+    "Wii": {
+        description: "The Wii is a home video game console developed and marketed by Nintendo.",
+        year: "2006",
+        image: "../../../asset/platformImage/Wii.jpg"
+    },
+    "DS": {
+        description: "The Nintendo DS is a dual-screen handheld game console developed and released by Nintendo.",
+        year: "2004",
+        image: "../../../asset/platformImage/DS.jpg"
+    },
+    "X360": {
+        description: "The Xbox 360 is a home video game console developed by Microsoft.",
+        year: "2005",
+        image: "../../../asset/platformImage/X360.jpg"
+    },
+    "PSP": {
+        description: "The PlayStation Portable (PSP) is a handheld game console developed by Sony Computer Entertainment.",
+        year: "2004",
+        image: "../../../asset/platformImage/PSP.jpg"
+    },
+    "Action": {
+        description: "Action games are a video game genre that emphasizes physical challenges, including hand–eye coordination and reaction-time.",
+        typicalGames: "Grand Theft Auto V, Call of Duty: Black Ops 3",
+        image: "../../../asset/platformImage/Action.jpg"
+    },
+    "Sports": {
+        description: "Sports games simulate traditional physical sports, such as football, basketball, etc.",
+        typicalGames: "FIFA 15, Wii Sports, FIFA 14",
+        image: "../../../asset/platformImage/Sports.jpg"
+    },
+    "Misc": {
+        description: "Miscellaneous games that do not fit into any other genre.",
+        typicalGames: "Wii Play, Nintendogs, Brain Age",
+        image: "../../../asset/platformImage/Misc.jpg"
+    },
+    "Role-Playing": {
+        description: "Role-playing games (RPGs) are a genre of video games where the player controls the actions of a character immersed in some well-defined world.",
+        typicalGames: "Pokemon Red/Pokemon Blue, Final Fantasy VII",
+        image: "../../../asset/platformImage/Role-Playing.jpg"
+    },
+    "Shooter": {
+        description: "Shooter games are a subgenre of action games that focus on combat involving firearms.",
+        typicalGames: "Call of Duty: Modern Warfare 3, Call of Duty: Black Ops 3",
+        image: "../../../asset/platformImage/Shooter.jpg"
+    }
+};
+
 d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
     globalData = data;
 
@@ -247,10 +310,32 @@ window.addEventListener("resize", function() {
     }
 });
 
-function handleChordClick(event, d) {
-    console.log(`Clicked chord`);
+function handleGroupClick(_, d) {
+    const groupName = d.index < window.globalGenres.length ? window.globalGenres[d.index] : window.globalPlatforms[d.index - window.globalGenres.length];
+    const groupDetails = details[groupName];
 
-    // 确定所选的 genre 和 platform
+    if (groupDetails) {
+        document.getElementById('groupDescription').textContent = groupDetails.description;
+        if (d.index < window.globalGenres.length) { // If it's a genre
+            document.getElementById('groupYearLabel').textContent = "Typical Games:";
+            document.getElementById('groupYear').textContent = groupDetails.typicalGames;
+        } else { // If it's a platform
+            document.getElementById('groupYearLabel').textContent = "Released Year:";
+            document.getElementById('groupYear').textContent = groupDetails.year;
+        }
+        document.getElementById('groupImage').src = groupDetails.image;
+
+        // Show the group card and hide the default info
+        document.getElementById('infoCard').style.display = 'block';
+        document.getElementById('defaultInfo').style.display = 'none';
+        document.getElementById('chordDetails').style.display = 'none';
+        document.getElementById('groupDetails').style.display = 'block';
+    } else {
+        console.error("No details available for the selected group.");
+    }
+}
+
+function handleChordClick(event, d) {
     const genres = window.globalGenres;
     const platforms = window.globalPlatforms;
 
@@ -259,15 +344,10 @@ function handleChordClick(event, d) {
     const selectedGenre = genres[genreIndex];
     const selectedPlatform = platforms[platformIndex];
 
-    console.log(selectedGenre, selectedPlatform);
-
-    // 筛选特定平台和类型下的所有游戏
     const filteredGames = globalData.filter(game => game.Genre === selectedGenre && game.Platform === selectedPlatform);
     
-    // 寻找销量最高的游戏
     const mostPopularGame = filteredGames.reduce((max, game) => parseFloat(max.Global_Sales) > parseFloat(game.Global_Sales) ? max : game, { Global_Sales: 0 });
 
-    // 更新DOM元素
     if (mostPopularGame.Name) {
         document.getElementById('gameTitle').textContent = mostPopularGame.Name;
         document.getElementById('gameDescription').textContent = `The best-selling ${selectedGenre} game on ${selectedPlatform}.`;
@@ -276,17 +356,16 @@ function handleChordClick(event, d) {
         document.getElementById('gameYear').textContent = `Year: ${mostPopularGame.Year || 'Unknown'}`;
         document.getElementById('gameImage').src = `/asset/topgames/${mostPopularGame.Name.replace(/[^a-zA-Z0-9]/g, '')}.jpg`;
 
-        // Show the card and hide the default info
+        // Show the chord card and hide the default info
         document.getElementById('infoCard').style.display = 'block';
         document.getElementById('defaultInfo').style.display = 'none';
+        document.getElementById('chordDetails').style.display = 'block';
+        document.getElementById('groupDetails').style.display = 'none';
     } else {
         console.error("No data available for the selected genre and platform combination.");
     }
 }
 
-function handleGroupClick(_, d) {
-   // Show the group's introduction
-}
 
 window.addEventListener("load", function() {
     // Initially show default info and hide the info card

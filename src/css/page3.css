@@ -46,7 +46,7 @@ body {
 
 .card-header h2 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 16px; /* Smaller font size */
+    font-size: 14px; /* Smaller font size */
     margin: 0;
     color: #fff; /* White text color */
 }

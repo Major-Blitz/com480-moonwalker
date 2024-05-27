@@ -13,8 +13,26 @@ function getYearRange(range) {
     }
 }
 
+// Function to update the chart title based on the selected attribute
+function updateTitle(attribute) {
+    const titleMap = {
+        'Game_Count': 'Number of Games Released on Platforms',
+        'Global_Sales': 'Global Sales of Games on Platforms (in millions)',
+        'NA_Sales': 'NA Sales of Games on Platforms (in millions)',
+        'EU_Sales': 'EU Sales of Games on Platforms (in millions)',
+        'Other_Sales': 'Other Sales of Games on Platforms (in millions)'
+    };
+    const title = titleMap[attribute] || 'Number of Games Released on Platforms';
+    console.log(`Updating title to: ${title}`);
+    d3.select("#chart-title").text(title);
+}
+
 // Wrap the entire chart rendering logic in a function that takes the selected attribute and time range as arguments
 function renderChart(attribute, timeRange) {
+    // Update the chart title
+    console.log(`Updating title now`);
+    updateTitle(attribute);
+
     const [startYear, endYear] = getYearRange(timeRange);
 
     // Define a fixed color mapping for platforms
@@ -147,7 +165,7 @@ function renderChart(attribute, timeRange) {
             .style("fill", "#ff7f0e");  // Orange color for y-axis labels
 
         // Define color scale
-        const color = d3.scaleOrdinal()
+        const colorFigure1 = d3.scaleOrdinal()
             .domain(topPlatforms)
             .range(["#E69F00", "#56B4E9", "#009E73", "#F0E442"]);
 
@@ -223,7 +241,7 @@ function renderChart(attribute, timeRange) {
             .attr("x", width + 20)
             .attr("width", 18)
             .attr("height", 18)
-            .style("fill", color);
+            .style("fill", colorFigure1);
 
         legend.append("text")
             .attr("x", width + 44)
@@ -247,6 +265,7 @@ renderChart("Game_Count", "all");
 document.getElementById("attribute-select").addEventListener("change", function() {
     const attribute = this.value;
     const timeRange = document.getElementById("time-select").value;
+    updateTitle(attribute); // Update the title based on the selected attribute
     renderChart(attribute, timeRange);
 });
 

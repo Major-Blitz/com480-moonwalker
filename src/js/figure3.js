@@ -26,62 +26,62 @@ const details = {
     "PS": {
         description: "The PlayStation (PS) is a home video game console developed and marketed by Sony Computer Entertainment.",
         year: "1994",
-        image: "../../../asset/platformImage/PS.jpg"
+        image: "asset/platformImage/PS.jpg"
     },
     "PS2": {
         description: "The PlayStation 2 (PS2) is a home video game console developed and marketed by Sony Computer Entertainment.",
         year: "2000",
-        image: "../../../asset/platformImage/PS2.jpg"
+        image: "asset/platformImage/PS2.jpg"
     },
     "PS3": {
         description: "The PlayStation 3 (PS3) is a home video game console developed and marketed by Sony Computer Entertainment.",
         year: "2006",
-        image: "../../../asset/platformImage/PS3.jpg"
+        image: "asset/platformImage/PS3.jpg"
     },
     "Wii": {
         description: "The Wii is a home video game console developed and marketed by Nintendo.",
         year: "2006",
-        image: "../../../asset/platformImage/Wii.jpg"
+        image: "asset/platformImage/Wii.jpg"
     },
     "DS": {
         description: "The Nintendo DS is a dual-screen handheld game console developed and released by Nintendo.",
         year: "2004",
-        image: "../../../asset/platformImage/DS.jpg"
+        image: "asset/platformImage/DS.jpg"
     },
     "X360": {
         description: "The Xbox 360 is a home video game console developed by Microsoft.",
         year: "2005",
-        image: "../../../asset/platformImage/X360.jpg"
+        image: "asset/platformImage/X360.jpg"
     },
     "PSP": {
         description: "The PlayStation Portable (PSP) is a handheld game console developed by Sony Computer Entertainment.",
         year: "2004",
-        image: "../../../asset/platformImage/PSP.jpg"
+        image: "asset/platformImage/PSP.jpg"
     },
     "Action": {
         description: "Action games are a video game genre that emphasizes physical challenges, including hand–eye coordination and reaction-time.",
         typicalGames: "Grand Theft Auto V, Call of Duty: Black Ops 3",
-        image: "../../../asset/platformImage/Action.jpg"
+        image: "asset/platformImage/Action.jpg"
     },
     "Sports": {
         description: "Sports games simulate traditional physical sports, such as football, basketball, etc.",
         typicalGames: "FIFA 15, Wii Sports, FIFA 14",
-        image: "../../../asset/platformImage/Sports.jpg"
+        image: "asset/platformImage/Sports.jpg"
     },
     "Misc": {
         description: "Miscellaneous games that do not fit into any other genre.",
         typicalGames: "Wii Play, Nintendogs, Brain Age",
-        image: "../../../asset/platformImage/Misc.jpg"
+        image: "asset/platformImage/Misc.jpg"
     },
     "Role-Playing": {
         description: "Role-playing games (RPGs) are a genre of video games where the player controls the actions of a character immersed in some well-defined world.",
         typicalGames: "Pokemon Red/Pokemon Blue, Final Fantasy VII",
-        image: "../../../asset/platformImage/Role-Playing.jpg"
+        image: "asset/platformImage/Role-Playing.jpg"
     },
     "Shooter": {
         description: "Shooter games are a subgenre of action games that focus on combat involving firearms.",
         typicalGames: "Call of Duty: Modern Warfare 3, Call of Duty: Black Ops 3",
-        image: "../../../asset/platformImage/Shooter.jpg"
+        image: "asset/platformImage/Shooter.jpg"
     }
 };
 

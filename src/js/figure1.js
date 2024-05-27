@@ -27,6 +27,10 @@ function renderChart(attribute, timeRange) {
         "PSP": "#D55E00",
         "3DS": "#CC79A7",
         "PS4": "#999999",
+        "N64": "#DDA0DD",  // Add more colors for older platforms
+        "SNES": "#8A2BE2",
+        "SAT": "#FF1493",
+        "PS": "#00BFFF"
     };
 
     d3.csv("../../../datasets/video-game-sales.csv").then(data => {

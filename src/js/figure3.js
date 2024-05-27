@@ -9,7 +9,7 @@ var chosen_idx = -1;
 var src_idx = -1,
     tgt_idx = -1;
 
-const colors = [
+const page3Colors = [
     '#ff5733', // bright red
     '#33ff57', // bright green
     '#3357ff', // bright blue
@@ -279,8 +279,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .enter().append("path")
         .attr("d", ribbon)
         .attr("class", "ribbon")
-        .style("fill", d => colors[d.source.index % colors.length])
-        .style("stroke", d => d3.rgb(colors[d.source.index % colors.length]).darker())
+        .style("fill", d => page3Colors[d.source.index % page3Colors.length])
+        .style("stroke", d => d3.rgb(page3Colors[d.source.index % page3Colors.length]).darker())
         .on("click", chordClickHandler)
         .on("mouseover", chordMouseMove)
         .on("mouseout", mouseout);
@@ -293,8 +293,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .attr("class", "group");
 
     groups.append("path")
-        .style("fill", d => colors[d.index % colors.length])
-        .style("stroke", d => d3.rgb(colors[d.index % colors.length]).darker())
+        .style("fill", d => page3Colors[d.index % page3Colors.length])
+        .style("stroke", d => d3.rgb(page3Colors[d.index % page3Colors.length]).darker())
         .attr("d", arc);
 
     groups.append("text")

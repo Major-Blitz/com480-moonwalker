@@ -6,10 +6,17 @@
     <title>Game World</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.css">
     <link rel="stylesheet" type="text/css" href="examples.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/figure1.css" />
     <link rel="stylesheet" type="text/css" href="src/css/figure2.css" />
-    <link rel="stylesheet" type="text/css" href="src/css/page3.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/figure3.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"></head>
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js"></script>
     
     <style>
 
@@ -78,25 +85,18 @@
             </div>
 
         </div>
-        <div class="section" id="section3">
-            <div>
-                <h1>The evolution history of video game platforms</h1>
-                <img src="asset/platform_evolution.jpg" alt="Figure 1" style="display: block; margin: 20px auto; max-height: 50vh;">
-            </div>
-            
-        </div>
+
+        <div class="section initial" id="section_figure1"></div>
+
         <div class="section" id="section3">
             <div>
                 <h1>The popularity among different game genres</h1>
                 <div id="container_2" style="height: 580px; width: 80%; margin: 0 auto"></div>
             </div>
         </div>
-        <div class="section" id="section3">
-            <div class="intro">
-                <h1>The tonality of game genres for each platform</h1>
-                <div id="container_3" style="height: 80vh; width: 80%; margin: 0 auto"></div>
-            </div>
-        </div>
+
+        <div class="section initial" id="section_figure3"></div>
+
         <div class="section" id="section3">
             <div class="intro">
                 <h1>Sales performance of game publishers</h1>
@@ -122,19 +122,65 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js"></script>
-    <script src="src/js/page3.js"></script>
     <script src="src/js/figure2.js"></script>
     <script src="src/js/figure4.js"></script>
-    <script type="text/javascript">
-        var myFullpage = new fullpage('#fullpage', {
-            anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', '7thPage'],
-            sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
-            navigation: true,
-            navigationPosition: 'right',
-            navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth page', 'Fifth page', 'Sixth page']
+    
+    <script>
+        $(document).ready(function(){
+            $("#section_figure1").load("src/html/figure1.html");
+            $("#section_figure3").load("src/html/figure3.html");
+
+            $("#fullpage").fullpage({
+                    // Navigation
+                    navigation: true,
+                    anchors: [
+                        "home",
+                        "figure1",
+                        "intro",
+                        "figure2",
+                        "figure3",
+                        "figure4",
+                        "figure5",
+                        "about",
+                    ],
+                    slidesNavigation: true,
+                    // Scrolling
+                    css3: true,
+                    scrollingSpeed: 700,
+                    autoScrolling: true,
+                    // Design
+                    controlArrows: false,
+                    controlArrowsHTML: [
+                        '<div class="fp-arrow"></div>',
+                        '<div class="fp-arrow"></div>',
+                    ],
+                    verticalCentered: true,
+                    // menu: "#menu",
+                    // paddingTop: "3em",
+                    // paddingBottom: "10px",
+                    fixedElements: ".footer",
+
+                    afterLoad: function (origin, destination, direction) {
+                        let $section = $(destination.item);
+                        $section.addClass("fade-in");
+                    },
+
+                    onLeave: function (origin, destination, direction) {
+                        let $section = $(origin.item);
+                        let lastIndex = $("#fullpage .section").length - 2;
+                        let currentIdx = destination.index;
+
+                        if (currentIdx != lastIndex + 1) {
+                            $section.removeClass("fade-in");
+                        }
+                    },
+
+                    afterResize: function() {
+                        location.reload();
+                    }
+                });
         });
-        
     </script>
+
 </body>
 </html>

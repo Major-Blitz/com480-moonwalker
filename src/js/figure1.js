@@ -1,5 +1,5 @@
 
-// Function to get the year range based on the selected option
+// Get the year range based on the selected option
 function getYearRange(range) {
     switch(range) {
         case 'before2000':
@@ -9,26 +9,25 @@ function getYearRange(range) {
         case '2010-2020':
             return [2010, 2016];
         default:
-            return [1998, 2016]; // Assuming the dataset includes up to the year 2024
+            return [1998, 2016]; 
     }
-}
-
-// Function to update the chart title based on the selected attribute
-function updateTitle(attribute) {
-    const titleMap = {
-        'Game_Count': 'Number of Games Released on Platforms',
-        'Global_Sales': 'Global Sales of Games on Platforms (in millions)',
-        'NA_Sales': 'NA Sales of Games on Platforms (in millions)',
-        'EU_Sales': 'EU Sales of Games on Platforms (in millions)',
-        'Other_Sales': 'Other Sales of Games on Platforms (in millions)'
-    };
-    const title = titleMap[attribute] || 'Number of Games Released on Platforms';
-    d3.select("#chart-title").text(title);
 }
 
 // Wrap the entire chart rendering logic in a function that takes the selected attribute and time range as arguments
 function renderChart(attribute, timeRange) {
     const [startYear, endYear] = getYearRange(timeRange);
+
+    // Define a fixed color mapping for platforms
+    const platformColorMapping = {
+        "PS2": "#E69F00",
+        "X360": "#56B4E9",
+        "PS3": "#009E73",
+        "Wii": "#F0E442",
+        "DS": "#0072B2",
+        "PSP": "#D55E00",
+        "3DS": "#CC79A7",
+        "PS4": "#999999",
+    };
 
     d3.csv("../../../datasets/video-game-sales.csv").then(data => {
         // Format the data
@@ -103,8 +102,8 @@ function renderChart(attribute, timeRange) {
 
         // Set up SVG canvas dimensions
         const margin = { top: 50, right: 200, bottom: 50, left: 60 },
-              width = 1200 - margin.left - margin.right,  // Increased width
-              height = 600 - margin.top - margin.bottom;  // Increased height
+              width = 1200 - margin.left - margin.right,
+              height = 700 - margin.top - margin.bottom;
 
         // Create SVG element
         const svg = d3.select("#chart").append("svg")
@@ -126,7 +125,7 @@ function renderChart(attribute, timeRange) {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .selectAll("text")
-            .style("font-family", "Arial")
+            .style("font-family", "Poppins")
             .style("font-size", "14px")
             .style("fill", "#1f77b4")  // Blue color for x-axis labels
             .attr("dy", "1em")
@@ -139,7 +138,7 @@ function renderChart(attribute, timeRange) {
             .attr("class", "y axis")
             .call(yAxis)
             .selectAll("text")
-            .style("font-family", "Arial")
+            .style("font-family", "Poppins")
             .style("font-size", "14px")
             .style("fill", "#ff7f0e");  // Orange color for y-axis labels
 
@@ -148,11 +147,17 @@ function renderChart(attribute, timeRange) {
             .domain(topPlatforms)
             .range(["#E69F00", "#56B4E9", "#009E73", "#F0E442"]);
 
-        // Add lines for each platform
+        // Define line generator
         const line = d3.line()
             .x(d => x(d.Year))
             .y(d => y(d[attribute]))
             .curve(d3.curveMonotoneX);  // Smooth the line
+
+        // Define the initial line generator for animation
+        const initialLine = d3.line()
+            .x(d => x(d.Year))
+            .y(y(0))  // Start at the bottom (y=0)
+            .curve(d3.curveMonotoneX);
 
         const platformGroups = d3.group(processedData, d => d.Platform);
 
@@ -160,24 +165,31 @@ function renderChart(attribute, timeRange) {
             // Sort values by year
             values.sort((a, b) => a.Year - b.Year);
 
-            svg.append("path")
+            // Append the initial path (invisible)
+            const path = svg.append("path")
                 .datum(values)
                 .attr("class", "line")
-                .attr("d", line)
-                .style("stroke", color(key))
-                .style("stroke-width", 3.5)  // Increase the stroke width
+                .attr("d", initialLine)  // Use initial line generator
+                .style("stroke", platformColorMapping[key])
+                .style("stroke-width", 4)  // Increase the stroke width
                 .style("fill", "none");
 
-            svg.selectAll("dot")
+            // Transition to the final path
+            path.transition()
+                .duration(1000)
+                .attr("d", line);  // Use final line generator
+
+            // Add circles for data points with transition
+            svg.selectAll(`.dot-${key}`)
                 .data(values)
                 .enter().append("circle")
-                .attr("r", 7)  // Increase the radius
+                .attr("r", 8)  // Increase the radius
                 .attr("cx", d => x(d.Year))
-                .attr("cy", d => y(d[attribute]))
-                .attr("class", "dot")
-                .style("fill", color(key))
+                .attr("cy", y(0))  // Start at the bottom (y=0)
+                .attr("class", `dot-${key}`)
+                .style("fill", platformColorMapping[key])
                 .style("stroke", "#fff")
-                .style("stroke-width", 2)  
+                .style("stroke-width", 2)  // Optionally increase the stroke width for better visibility
                 .on("mouseover", function(event, d) {
                     tooltip.transition()
                         .duration(200)
@@ -190,7 +202,10 @@ function renderChart(attribute, timeRange) {
                     tooltip.transition()
                         .duration(500)
                         .style("opacity", 0);
-                });
+                })
+                .transition() // Add transition for the dots
+                .duration(1000)
+                .attr("cy", d => y(d[attribute]));  // Move to the final position
         });
 
         // Add legend
@@ -217,29 +232,22 @@ function renderChart(attribute, timeRange) {
         // Add tooltip for interactivity
         const tooltip = d3.select("body").append("div")
             .attr("class", "tooltip")
-            .style("opacity", 0)
-            .style("background", "rgba(0, 0, 0, 0.8)")
-            .style("color", "#fff")
-            .style("padding", "10px")
-            .style("border-radius", "5px")
-            .style("position", "absolute")
-            .style("pointer-events", "none");
+            .style("opacity", 0);
     });
 }
 
-// Initial render with default attribute and time range
-renderChart('Game_Count', 'all');
+// Initial render
+renderChart("Game_Count", "all");
 
-// Add event listeners to the dropdown menus
-d3.select("#attribute-select").on("change", function() {
-    const selectedAttribute = d3.select(this).property("value");
-    const selectedTimeRange = d3.select("#time-select").property("value");
-    updateTitle(selectedAttribute); // Update the title based on the selected attribute
-    renderChart(selectedAttribute, selectedTimeRange);
+// Update chart when the attribute or time range is changed
+document.getElementById("attribute-select").addEventListener("change", function() {
+    const attribute = this.value;
+    const timeRange = document.getElementById("time-select").value;
+    renderChart(attribute, timeRange);
 });
 
-d3.select("#time-select").on("change", function() {
-    const selectedAttribute = d3.select("#attribute-select").property("value");
-    const selectedTimeRange = d3.select(this).property("value");
-    renderChart(selectedAttribute, selectedTimeRange);
+document.getElementById("time-select").addEventListener("change", function() {
+    const timeRange = this.value;
+    const attribute = document.getElementById("attribute-select").value;
+    renderChart(attribute, timeRange);
 });

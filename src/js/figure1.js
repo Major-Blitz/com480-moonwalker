@@ -33,7 +33,7 @@ function renderChart(attribute, timeRange) {
         "PS": "#00BFFF"
     };
 
-    d3.csv("../../../datasets/video-game-sales.csv").then(data => {
+    d3.csv(".datasets/video-game-sales.csv").then(data => {
         // Format the data
         data.forEach(d => {
             d.Year = +d.Year;

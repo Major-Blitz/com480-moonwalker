@@ -77,16 +77,8 @@
                 <h1>Welcome to the world of video games～🎮</h1>
             </div>
         </div>
-        <div class="section" id="section3">
-            <div class="intro">
-                <h1>Introduction</h1>
-                <p class="centered-text" style="text-align: left; margin: 0 auto; ">
-                    Welcome to the world of video games, the premier hub for gaming enthusiasts. Whether you're a newcomer to gaming or a seasoned gamer, we're here to help you discover the perfect selection of thrilling video games tailored to your interests. Delve into iconic game studios and their exceptional titles, expanding your understanding of industry trends through captivating interactive experiences. Explore the roadmap below to navigate your adventure in the gaming world, where you can learn more about the fascinating realm of video games!
-                </p>
-            </div>
 
-        </div>
-
+        <div class="section initial" id="intropage"></div>
         <div class="section initial" id="section_figure1"></div>
 <!-- 
         <div class="section" id="section3">
@@ -97,7 +89,6 @@
         </div> -->
 
         <div class="section initial" id="section_figure2"></div>
-
         <div class="section initial" id="section_figure3"></div>
 
         <!-- <div class="section" id="section3">
@@ -130,6 +121,7 @@
     
     <script>
         $(document).ready(function(){
+            $("#intropage").load("src/html/intro.html");
             $("#section_figure1").load("src/html/figure1.html");
             $("#section_figure2").load("src/html/figure2.html");
             $("#section_figure3").load("src/html/figure3.html");

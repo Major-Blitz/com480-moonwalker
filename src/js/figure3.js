@@ -366,7 +366,7 @@ function handleChordClick(event, d) {
         document.getElementById('gameDescription').textContent = `The best-selling ${selectedGenre} game on ${selectedPlatform}.`;
         document.getElementById('gameSales').textContent = `Sales: $${mostPopularGame.Global_Sales}M`;
         document.getElementById('gameYear').textContent = `Year: ${mostPopularGame.Year || 'Unknown'}`;
-        document.getElementById('gameImage').src = `/asset/topgames/${mostPopularGame.Name.replace(/[^a-zA-Z0-9]/g, '')}.jpg`;
+        document.getElementById('gameImage').src = `asset/topgames/${mostPopularGame.Name.replace(/[^a-zA-Z0-9]/g, '')}.jpg`;
 
         // Show the chord card and hide the default info
         document.getElementById('infoCard').style.display = 'block';

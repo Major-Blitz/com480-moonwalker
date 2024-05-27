@@ -85,7 +85,7 @@ const details = {
     }
 };
 
-d3.csv("../../../datasets/video-game-sales.csv").then(function(data) {
+d3.csv("datasets/video-game-sales.csv").then(function(data) {
     globalData = data;
 
     let platformCounts = {};

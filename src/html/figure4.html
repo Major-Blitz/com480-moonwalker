@@ -46,7 +46,13 @@
           "Bethesda Softworks": "#232b2b"   // Elder Scrolls
         };
 
-        const myChart = echarts.init(document.getElementById("acrossChart"));
+        const dom = document.getElementById("acrossChart");
+        if (!dom) {
+          console.error("Element #acrossChart not found");
+          return;
+        }
+
+        const myChart = echarts.init(dom);
         const updateFrequency = 2000;
         let currentIndex = 0;
 

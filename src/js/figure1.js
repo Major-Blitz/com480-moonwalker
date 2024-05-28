@@ -1,3 +1,18 @@
+// Define a fixed color mapping for platforms
+const platformColorMapping = {
+    "PS2": "#E69F00",
+    "X360": "#56B4E9",
+    "PS3": "#009E73",
+    "Wii": "#F0E442",
+    "DS": "#0072B2",
+    "PSP": "#D55E00",
+    "3DS": "#CC79A7",
+    "PS4": "#999999",
+    "N64": "#DDA0DD",  // Add more colors for older platforms
+    "SNES": "#8A2BE2",
+    "SAT": "#FF1493",
+    "PS": "#00BFFF"
+};
 
 // Get the year range based on the selected option
 function getYearRange(range) {
@@ -34,22 +49,6 @@ function renderChart(attribute, timeRange) {
     updateTitle(attribute);
 
     const [startYear, endYear] = getYearRange(timeRange);
-
-    // Define a fixed color mapping for platforms
-    const platformColorMapping = {
-        "PS2": "#E69F00",
-        "X360": "#56B4E9",
-        "PS3": "#009E73",
-        "Wii": "#F0E442",
-        "DS": "#0072B2",
-        "PSP": "#D55E00",
-        "3DS": "#CC79A7",
-        "PS4": "#999999",
-        "N64": "#DDA0DD",  // Add more colors for older platforms
-        "SNES": "#8A2BE2",
-        "SAT": "#FF1493",
-        "PS": "#00BFFF"
-    };
 
     d3.csv("datasets/video-game-sales.csv").then(data => {
         // Format the data
@@ -123,9 +122,9 @@ function renderChart(attribute, timeRange) {
         d3.select("#chart").selectAll("*").remove();
 
         // Set up SVG canvas dimensions
-        const margin = { top: 50, right: 200, bottom: 50, left: 60 },
-              width = 1200 - margin.left - margin.right,
-              height = 700 - margin.top - margin.bottom;
+        const margin = { top: 50, right: 200, bottom: 50, left: 200 },
+              width = 1250 - margin.left - margin.right,
+              height = 500 - margin.top - margin.bottom;
 
         // Create SVG element
         const svg = d3.select("#chart").append("svg")
@@ -192,9 +191,12 @@ function renderChart(attribute, timeRange) {
                 .datum(values)
                 .attr("class", "line")
                 .attr("d", initialLine)  // Use initial line generator
+                .style("fill", platformColorMapping[key])
                 .style("stroke", platformColorMapping[key])
                 .style("stroke-width", 4)  // Increase the stroke width
                 .style("fill", "none");
+
+            console.log("platform: ", key, "color", platformColorMapping[key]);
 
             // Transition to the final path
             path.transition()
@@ -241,7 +243,7 @@ function renderChart(attribute, timeRange) {
             .attr("x", width + 20)
             .attr("width", 18)
             .attr("height", 18)
-            .style("fill", colorFigure1);
+            .style("fill", d => platformColorMapping[d]);
 
         legend.append("text")
             .attr("x", width + 44)
@@ -250,6 +252,21 @@ function renderChart(attribute, timeRange) {
             .style("text-anchor", "start")
             .style("font-size", "12px")
             .text(d => d);
+
+        // Update legend color
+        svg.selectAll(".legend rect")
+            .data(topPlatforms)
+            .style("fill", d => platformColorMapping[d]);
+
+        svg.selectAll(".legend text")
+            .data(topPlatforms)
+            .text(d => d);
+
+        // Remove redundent legend
+        svg.selectAll(".legend")
+            .data(topPlatforms)
+            .exit()
+            .remove();
 
         // Add tooltip for interactivity
         const tooltip = d3.select("body").append("div")

@@ -122,9 +122,10 @@ function renderChart(attribute, timeRange) {
         d3.select("#chart").selectAll("*").remove();
 
         // Set up SVG canvas dimensions
-        const margin = { top: 50, right: 200, bottom: 50, left: 200 },
-              width = 1250 - margin.left - margin.right,
-              height = 500 - margin.top - margin.bottom;
+        const margin = { top: 50, right: 200, bottom: 50, left: 200 };
+        
+        const width = Math.min(window.innerWidth * 0.6, 1200);
+        const height = Math.min(window.innerHeight * 0.6, 600);
 
         // Create SVG element
         const svg = d3.select("#chart").append("svg")

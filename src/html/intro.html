@@ -4,23 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the Game World</title>
+    <!-- <base href="https://major-blitz.github.io/com480-moonwalker/"> -->
+    <base href="../../">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Press+Start+2P&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        .content {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            padding: 20px;
-            color: #333;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #e0f7fa; /* Light blue background color */
         }
-        .header {
-            font-size: 2em;
+        .introcontent {
+            text-align: center;
+            color: #1a0bee;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .introheader {
+            font-size: 4em;
+            font-family: 'Lobster', cursive;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            color: #1a0bee;
+            text-shadow: 2px 2px #e71919; /* Adding a shadow for a 3D effect */
+        }
+        .description {
+            margin: 0 auto;
+            width: 75%;
+            padding: 30px;
+            font-size: 1.5em;
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.8;
+            color: #f0f0f0; /* Darker color for better readability */
+            box-sizing: border-box;
+            background-image: linear-gradient(130deg,#1a0bee,#e71919);
+            border-radius: 30px; /* Rounded corners */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-bottom: 30px;
+        }
+        .roadmap-container {
+            width: 100%;
+            text-align: center;
         }
         .roadmap {
-            display: flex;
-            justify-content: space-around;
+            display: inline-flex;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+            margin: 20px 0;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.2em;
+            letter-spacing: 0.05em;
+            color: #333;
         }
         .roadmap div {
             display: flex;
@@ -29,40 +66,43 @@
             margin: 10px;
         }
         .icon {
-            font-size: 2em;
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
-
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="header">Welcome to the Game World</div>
-        <p>Welcome to the World of Video Game, the ultimate destination for video game enthusiasts and newcomers alike. We're here to assist you in exporing various game genres, platforms, and find the perfect game match for your taste. Check out our roadmap below to navigate your journey through Video Game Kingdom, where you can learn more about games and discover your ideal game match!</p>
-                
-        <div class="roadmap">
-            <div>
-                <div class="icon">🌎</div>
-                <div>Popularity of Platforms</div>
-            </div>
-            <div>
-                <div class="icon">📊</div>
-                <div>Game Genre Trends</div>
-            </div>
-            <div>
-                <div class="icon">🎮</div>
-                <div>Tonality of Platforms</div>
-            </div>
-            <div>
-                <div class="icon">🏆</div>
-                <div>Competition among Publishers</div>
-            </div>
-            <div>
-                <div class="icon">👾</div>
-                <div>Your Game Advisor</div>
-            </div>
-            <div>
-                <div class="icon">🎲</div>
-                <div>Your Game Advisor</div>
+    <div class="introcontent">
+        <div class="introheader">Welcome to the Game World</div>
+        <div class="description">
+            Welcome to the World of Video Game, the ultimate destination for video game enthusiasts and newcomers alike. We're here to assist you in exploring various game genres, platforms, and find the perfect game match for your taste. Check out our roadmap below to navigate your journey through Video Game Kingdom, where you can learn more about games and discover your ideal game match!
+        </div>                
+        <div class="roadmap-container">
+            <div class="roadmap">
+                <div>
+                    <div class="icon">🌎</div>
+                    <div>Popularity of Platforms</div>
+                </div>
+                <div>
+                    <div class="icon">📊</div>
+                    <div>Game Genre Trends</div>
+                </div>
+                <div>
+                    <div class="icon">🎮</div>
+                    <div>Tonality of Platforms</div>
+                </div>
+                <div>
+                    <div class="icon">🏆</div>
+                    <div>Publishers Trends</div>
+                </div>
+                <div>
+                    <div class="icon">👾</div>
+                    <div>Your Game Advisor</div>
+                </div>
+                <div>
+                    <div class="icon">🎲</div>
+                    <div>Your Game Advisor</div>
+                </div>
             </div>
         </div>
     </div>

@@ -29,11 +29,114 @@
         referrerpolicy="no-referrer"
     />
     </head>
+    <body>
+        <div id="figure5-page">
+            <div class="columns is-vcentered">
+                <div class="column is-one-third">
+                    <div id="fig5-descrip">
+                        <p class="default-info">
+                            <h2 class="title is-2">Choose Your <br>Favorite Video Game</h2>
+                            Are you struggling to discover the ultimate video game for your collection?
+                            Do you often find games with engaging gameplay but at exorbitant prices?
+                            Are you looking for a specific genre or type of game experience?
+                            Our user-friendly platform is engineered to help you easily choose your ideal game with just a few clicks.
+                            Discover your perfect gaming adventure today!
+                            <h4><i class="fa fa-info-circle" aria-hidden="true"></i> How to use</h4>
+                            Each <strong>bubble</strong> represents a video game. You can choose your desired one by simply clicking on
+                            the <strong>buttons</strong> to focus on your concerned attributes! Also, clicking on the
+                            <strong>legend</strong> to retain items with your favored attributes only!
+                        </p>
+                    </div>
+                </div>
+                <div class="columns is-two-thirds">
+                    <div id="fig5-figure">
+                        <div>
+                            <span class="fig5-button" id="fig5-show-all">Show All</span>
+                            <span class="fig5-button" id="fig5-price">Price</span>
+                            <span class="fig5-button" id="fig5-rating">Rating</span>
+                            <span class="fig5-button" id="fig5-genres">Gernes</span>
+                            <span class="fig5-button" id="fig5-release-year">Release Year</span>
+                        </div>
 
-<div class="columns is-vcentered">
-    <div class="column is-one-third">
-        <div id="fig5-descrip">
-            <p class="default-info">
+                        <div id="filtering-bubbles"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fig5_after_click" style="display: none">
+                <div id="fig5_item" class="fig5-info-table">
+                    <figure>
+                        <div style="position: relative;">
+                            <!-- <img src="image/brand-logo/hayb_speciality_coffee_thumb.png" id="fig3_brand_image" class="imgCom"> -->
+                            <img id="fig5_item_image" class="product_img" src="images/game-item-figs/Apex Legends.jpg">
+                        </div>
+                    </figure>
+                    <div id="fig5-title">
+                        <h3>Colombia LA PRADERA</h3>
+                    </div>
+                    <!--
+                    <div id="fig3-subtitle">
+                        filter
+                    </div>
+                    -->
+
+                    <div class="rating-panel">
+                        <div class="columns is-vcentered">
+                            <div class="column is-one-third" id="fig5_price" style="text-align: center;">
+                                <text>15</text>
+                                <img src="images/dollar-symbol-v2.png" class="image is-24x24"
+                                    style="display:inline-block;vertical-align:top;">
+                            </div>
+
+                            <div class="column is-one-third" id="fig5_rating" style="text-align: center;">
+                                <text>5.0/5.0</text>
+                                <img src="images/star_v2.png" class="image is-24x24"
+                                    style="display:inline-block;vertical-align:top;">
+                            </div>
+
+                            <div class="column is-one-third" id="fig5_recommended" style="text-align: center;">
+                                <text>95</text>
+                                <img src="images/heart.png" class="image is-24x24" style="display:inline-block;vertical-align:top;">
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr class="product_parameter">
+                                <td class="parameter_item">Developers</td>
+                                <td>
+                                    <div id="fig5-developers" class="content_item">HAYB Speciality Coffee</div>
+                                </td>
+                            </tr>
+
+                            <tr class="product_parameter">
+                                <td class="parameter_item">Release</td>
+                                <td>
+                                    <div id="fig5-release" class="content_item">Filter</div>
+                                </td>
+                            </tr>
+
+                            <tr class="product_parameter">
+                                <td class="parameter_item">Genres</td>
+                                <td>
+                                    <div id="fig5-genres-show" class="content_item">Light to Medium Light</div>
+                                </td>
+                            </tr>
+
+                            <tr class="product_parameter">
+                                <td class="parameter_item">Review</td>
+                                <td>
+                                    <div id="fig5-review" class="content_item">Apricots,Apple,Watermelon,Apricots,Apple,Watermelon
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="fig5_refresh" style="display: none">
+                <p class="default-info">
                 <h2 class="title is-2">Choose Your <br>Favorite Video Game</h2>
                 Are you struggling to discover the ultimate video game for your collection?
                 Do you often find games with engaging gameplay but at exorbitant prices?
@@ -41,112 +144,12 @@
                 Our user-friendly platform is engineered to help you easily choose your ideal game with just a few clicks.
                 Discover your perfect gaming adventure today!
                 <h4><i class="fa fa-info-circle" aria-hidden="true"></i> How to use</h4>
-                Each <strong>bubble</strong> represents a video game. You can choose your desired one by simply clicking on
-                the <strong>buttons</strong> to focus on your concerned attributes! Also, clicking on the
-                <strong>legend</strong> to retain items with your favored attributes only!
-            </p>
-        </div>
-    </div>
-    <div class="columns is-two-thirds">
-        <div id="fig5-figure">
-            <div>
-                <span class="fig5-button" id="fig5-show-all">Show All</span>
-                <span class="fig5-button" id="fig5-price">Price</span>
-                <span class="fig5-button" id="fig5-rating">Rating</span>
-                <span class="fig5-button" id="fig5-genres">Gernes</span>
-                <span class="fig5-button" id="fig5-release-year">Release Year</span>
-            </div>
-
-            <div id="filtering-bubbles"></div>
-        </div>
-    </div>
-</div>
-
-<div id="fig5_after_click" style="display: none">
-    <div id="fig5_item" class="fig5-info-table">
-        <figure>
-            <div style="position: relative;">
-                <!-- <img src="image/brand-logo/hayb_speciality_coffee_thumb.png" id="fig3_brand_image" class="imgCom"> -->
-                <img id="fig5_item_image" class="product_img" src="images/game-item-figs/Apex Legends.jpg">
-            </div>
-        </figure>
-        <div id="fig5-title">
-            <h3>Colombia LA PRADERA</h3>
-        </div>
-        <!--
-        <div id="fig3-subtitle">
-            filter
-        </div>
-        -->
-
-        <div class="rating-panel">
-            <div class="columns is-vcentered">
-                <div class="column is-one-third" id="fig5_price" style="text-align: center;">
-                    <text>15</text>
-                    <img src="images/dollar-symbol-v2.png" class="image is-24x24"
-                        style="display:inline-block;vertical-align:top;">
-                </div>
-
-                <div class="column is-one-third" id="fig5_rating" style="text-align: center;">
-                    <text>5.0/5.0</text>
-                    <img src="images/star_v2.png" class="image is-24x24"
-                        style="display:inline-block;vertical-align:top;">
-                </div>
-
-                <div class="column is-one-third" id="fig5_recommended" style="text-align: center;">
-                    <text>95</text>
-                    <img src="images/heart.png" class="image is-24x24" style="display:inline-block;vertical-align:top;">
-                </div>
+                Each <strong>bubble</strong> represents a coffee item. You can choose your desired one by simply clicking on the
+                <strong>buttons</strong> to focus on your concerned attributes! Also, clicking on the <strong>legend</strong> to
+                retain items with your favored attributes only!
+                </p>
             </div>
         </div>
-        <table class="table table-hover">
-            <tbody>
-                <tr class="product_parameter">
-                    <td class="parameter_item">Developers</td>
-                    <td>
-                        <div id="fig5-developers" class="content_item">HAYB Speciality Coffee</div>
-                    </td>
-                </tr>
-
-                <tr class="product_parameter">
-                    <td class="parameter_item">Release</td>
-                    <td>
-                        <div id="fig5-release" class="content_item">Filter</div>
-                    </td>
-                </tr>
-
-                <tr class="product_parameter">
-                    <td class="parameter_item">Genres</td>
-                    <td>
-                        <div id="fig5-genres-show" class="content_item">Light to Medium Light</div>
-                    </td>
-                </tr>
-
-                <tr class="product_parameter">
-                    <td class="parameter_item">Review</td>
-                    <td>
-                        <div id="fig5-review" class="content_item">Apricots,Apple,Watermelon,Apricots,Apple,Watermelon
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div id="fig5_refresh" style="display: none">
-    <p class="default-info">
-    <h2 class="title is-2">Choose Your <br>Favorite Video Game</h2>
-    Are you struggling to discover the ultimate video game for your collection?
-    Do you often find games with engaging gameplay but at exorbitant prices?
-    Are you looking for a specific genre or type of game experience?
-    Our user-friendly platform is engineered to help you easily choose your ideal game with just a few clicks.
-    Discover your perfect gaming adventure today!
-    <h4><i class="fa fa-info-circle" aria-hidden="true"></i> How to use</h4>
-    Each <strong>bubble</strong> represents a coffee item. You can choose your desired one by simply clicking on the
-    <strong>buttons</strong> to focus on your concerned attributes! Also, clicking on the <strong>legend</strong> to
-    retain items with your favored attributes only!
-    </p>
-</div>
-
-<script src="src/js/figure5.js"></script>
+        <script src="src/js/figure5.js"></script>
+    </body>
+</html>

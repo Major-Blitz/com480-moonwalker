@@ -221,7 +221,8 @@ function renderChart(attribute, timeRange) {
                         .style("opacity", .9);
                     tooltip.html("Platform: " + d.Platform + "<br/> Year: " + d.Year + "<br/> " + attribute + ": " + d3.format(".2f")(d[attribute]))
                         .style("left", (event.pageX + 15) + "px")
-                        .style("top", (event.pageY - 28) + "px");
+                        .style("top", (event.pageY - 28) + "px")
+                        .style("text-align", "center");  // Ensure text alignment is center
                 })
                 .on("mouseout", function(d) {
                     tooltip.transition()

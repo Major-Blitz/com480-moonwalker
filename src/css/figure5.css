@@ -1,4 +1,4 @@
-#section_figure5 {
+#figure5-page {
   font-family: "Poppins", sans-serif;
   background-color: #f2efeb;
   display: flex;
@@ -7,32 +7,32 @@
   align-items: center;
 }
 
-#fig5-descrip h4 {
+#figure5-page #fig5-descrip h4 {
   font-size: 1.1rem;
   margin-top: 20px;
   margin-bottom: 2px;
   font-weight: bold;
 }
 
-#fig5-figure {
+#figure5-page #fig5-figure {
   margin-top: 50px;
   margin-left: 120px;
   font-size: 1.5rem;
   text-align: center;
 }
-#section_figure5 h2 {
+#figure5-page h2 {
   /* font-size: 2.5rem; */
   font-family: "Darumadrop One", cursive;
   color: #592d22;
   margin: 0 0 20px 0;
 }
 
-#fig5-descrip {
+#figure5-page #fig5-descrip {
   margin-left: 80px;
   width: 100%;
 }
 
-.fig5-button {
+#figure5-page .fig5-button {
   display: inline-block;
   background-color: #f2efeb;
   padding: 1px 2px;
@@ -46,7 +46,7 @@
   font-family: "Darumadrop One", cursive;
 }
 
-.fig5-button::before {
+#figure5-page .fig5-button::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -60,61 +60,61 @@
   z-index: -1;
 }
 
-.fig5-button:hover {
+#figure5-page .fig5-button:hover {
   padding: 1px 15px 1px;
 }
 
-.fig5-button:hover::before {
+#figure5-page .fig5-button:hover::before {
   width: 300px;
   height: 300px;
 }
 
-#fig5-show-all {
+#figure5-page #fig5-show-all {
   color: #3e3b38;
 }
 
-#fig5-show-all:hover {
+#figure5-page #fig5-show-all:hover {
   color: #f2efeb;
   background-color: #3e3b38;
 }
 
-#fig5-price {
+#figure5-page #fig5-price {
   color: #9c3f4a;
 }
 
-#fig5-price:hover {
+#figure5-page #fig5-price:hover {
   color: #f2efeb;
   background-color: #9c3f4a;
 }
 
-#fig5-rating {
+#figure5-page #fig5-rating {
   color: #f2d076;
 }
 
-#fig5-rating:hover {
+#figure5-page #fig5-rating:hover {
   color: #f2efeb;
   background-color: #f2d076;
 }
 
-#fig5-roast-type {
+#figure5-page #fig5-roast-type {
   color: #c0aa9b;
 }
 
-#fig5-roast-type:hover {
+#figure5-page #fig5-roast-type:hover {
   color: #f2efeb;
   background-color: #c0aa9b;
 }
 
-#fig5-roast-level {
+#figure5-page #fig5-roast-level {
   color: #ad6d52;
 }
 
-#fig5-roast-level:hover {
+#figure5-page #fig5-roast-level:hover {
   color: #f2efeb;
   background-color: #ad6d52;
 }
 
-.flicker-animation {
+#figure5-page .flicker-animation {
   background: linear-gradient(45deg, #bd3737, #e67474);
   color: #f2efeb !important;
   padding: 1px 15px 1px;
@@ -130,7 +130,7 @@
   }
 }
 
-.fig5-info-table {
+#figure5-page .fig5-info-table {
   height: auto;
   width: 30vw;
   display: flex;
@@ -143,13 +143,13 @@
   padding: 0px;
 }
 
-.product_img {
+#figure5-page .product_img {
   width: 300px;
   height: 350px;
   margin-top: 10px;
 }
 
-.imgCom {
+#figure5-page .imgCom {
   position: absolute;
   z-index: 10;
   top: 160px;
@@ -162,27 +162,25 @@
   border: 1px solid #d3d3d3;
 }
 
-#fig5-title h3 {
+#figure5-page #fig5-title h3 {
   font-family: "Darumadrop One", cursive;
   font-size: 2rem;
 }
 
-.parameter_item {
+#figure5-page .parameter_item {
   font-family: "Avenir Next", "proxima", "Helvetica Neue", Helvetica, Arial,
       sans-serif;
   line-height: 24px;
   font-weight: 600;
 }
 
-.content_item {
+#figure5-page .content_item {
   font-size: small;
   vertical-align: middle;
 }
 
-#fig5-flavor {
+#figure5-page #fig5-flavor {
   width: 250px;
   word-wrap: break-word;
   white-space: normal;
 }
-
-

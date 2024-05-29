@@ -96,20 +96,20 @@
   background-color: #f2d076;
 }
 
-#fig5-roast-type {
+#fig5-genres {
   color: #c0aa9b;
 }
 
-#fig5-roast-type:hover {
+#fig5-genres:hover {
   color: #f2efeb;
   background-color: #c0aa9b;
 }
 
-#fig5-roast-level {
+#fig5-release-year {
   color: #ad6d52;
 }
 
-#fig5-roast-level:hover {
+#fig5-release-year:hover {
   color: #f2efeb;
   background-color: #ad6d52;
 }

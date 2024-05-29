@@ -10,14 +10,37 @@
     <link rel="stylesheet" type="text/css" href="src/css/figure1.css" />
     <link rel="stylesheet" type="text/css" href="src/css/figure2.css" />
     <link rel="stylesheet" type="text/css" href="src/css/figure3.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/figure5.css" />
 
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"></head>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.min.js"></script>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
+        integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw="
+        crossorigin="anonymous"
+    />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+        crossorigin="anonymous"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+        integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
     
     <style>
 
@@ -74,7 +97,7 @@
     <div id="fullpage">
         <div class="section " id="section0">
             <div class="intro">
-                <h1>Welcome to the world of video games～🎮</h1>
+                <h1>Welcome to the world of video games~🎮</h1>
             </div>
         </div>
 
@@ -99,13 +122,16 @@
         </div> -->
 
         <div class="section initial" id="section_figure4"></div>
+        <div class="section initial" id="section_figure5"></div>
 
+        <!--
         <div class="section" id="section3">
             <div class="intro">
                 <h1>Find your favorite game</h1>
                 <img src="asset/Figure5.png" alt="Figure 1" style="display: block; margin: 20px auto; max-height: 50vh;">
             </div>
         </div>
+        -->
         <div class="section" id="section3">
             <div class="intro">
                 <h1>Smart game recommendation assistant</h1>
@@ -126,6 +152,7 @@
             $("#section_figure2").load("src/html/figure2.html");
             $("#section_figure3").load("src/html/figure3.html");
             $("#section_figure4").load("src/html/figure4.html");
+            $("#section_figure5").load("src/html/figure5.html");
 
             $("#fullpage").fullpage({
                     // Navigation

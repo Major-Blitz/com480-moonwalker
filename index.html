@@ -49,9 +49,14 @@
             align-items: center;
             flex-direction: column;
             /* TODO: Change the background color */
-            background-color: #DCDCDC;
-            background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 40%),
-                            radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.1), transparent 30%);
+            background-color: #B0C4DE; /* 浅金属蓝色 */
+            background-image: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent),
+                linear-gradient(225deg, rgba(255, 255, 255, 0.3), transparent),
+                linear-gradient(45deg, rgba(0, 0, 0, 0.1), transparent),
+                linear-gradient(315deg, rgba(0, 0, 0, 0.2), transparent),
+                linear-gradient(to right, #CDE1FF, #A3B6E0, #B0C4DE);
+            background-blend-mode: overlay;
             background-size: cover;
             background-attachment: fixed;
             color: #333;

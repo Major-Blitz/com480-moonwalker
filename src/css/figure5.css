@@ -1,6 +1,6 @@
 #figure5-page {
   font-family: "Poppins", sans-serif;
-  background-color: #f2efeb;
+  background-color: lightblue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,20 +96,20 @@
   background-color: #f2d076;
 }
 
-#figure5-page #fig5-roast-type {
+#figure5-page #fig5-genres {
   color: #c0aa9b;
 }
 
-#figure5-page #fig5-roast-type:hover {
+#figure5-page #fig5-genres:hover {
   color: #f2efeb;
   background-color: #c0aa9b;
 }
 
-#figure5-page #fig5-roast-level {
+#figure5-page #fig5-release-year {
   color: #ad6d52;
 }
 
-#figure5-page #fig5-roast-level:hover {
+#figure5-page #fig5-release-year:hover {
   color: #f2efeb;
   background-color: #ad6d52;
 }

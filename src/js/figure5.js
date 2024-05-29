@@ -180,7 +180,7 @@ $(document).ready(function () {
             function impl_filter(indicator) {
                 // Remove existing elements except for the legend
                 svg.selectAll(".circleContainer, circle, text").remove();
-
+            
                 // Remove existing groups
                 svg.selectAll("g").remove();
                 let radius = 30;
@@ -191,19 +191,20 @@ $(document).ready(function () {
                 } else if (curData.length <= 25) {
                     radius = 40;
                 }
-
+            
                 createLegend(indicator);
-
+            
                 let elem_updated = svg
                     .selectAll("g.circleContainer")
                     .data(curData)
                     .enter()
                     .append("g")
                     .attr("class", "circleContainer");
-
+            
                 elem_updated
                     .data(curData)
                     .append("circle")
+                    .attr("class", "fig5-circle")
                     .style("cursor", "pointer")
                     .attr("r", radius)
                     .style("fill", (d) => {
@@ -230,12 +231,12 @@ $(document).ready(function () {
                         }
                     })
                     .on("click", function (e, d) {
-                        d3.selectAll("circle")
+                        d3.selectAll(".fig5-circle")
                             .transition()
                             .duration(300)
                             .attr("r", radius)
                             .attr("stroke-width", 0);
-
+            
                         // Increase the radius and stroke width of the clicked bubble for highlighting
                         d3.select(this)
                             .transition()
@@ -254,27 +255,20 @@ $(document).ready(function () {
                             .transition()
                             .duration(300)
                             .attr("r", radius * 1.1);
-
-                        // let brand = d["Roastery"].toLowerCase().replace(/ /g, "_").replace('.', "_") + '_thumb.png'
-                        // d3.selectAll("#fig3_brand_image").attr(
-                        //     "src",
-                        //     "../../image/brand-logo/" + brand
-                        // );
-                        // console.log(document.getElementById("fig3_brand_image").src);
-
+            
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
                             "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
-
+            
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
                         d3.selectAll("#fig5-subtitle").text(d["Item Subname"]);
-
+            
                         d3.selectAll("#fig5-developers").text(d["Developers"]);
                         d3.selectAll("#fig5-release").text(d["Release Date"]);
                         d3.selectAll("#fig5-genres-show").text(d["Genres"]);
                         d3.selectAll("#fig5-review").text(d["Review"]);
-
+            
                         d3.selectAll("#fig5_price")
                             .select("text")
                             .text(d["Price"]);
@@ -284,13 +278,11 @@ $(document).ready(function () {
                         d3.selectAll("#fig5_recommended")
                             .select("text")
                             .text(d["Wish"]);
-
+            
                         document.getElementById("fig5-descrip").innerHTML =
-                            document.getElementById(
-                                "fig5_after_click"
-                            ).innerHTML;
+                            document.getElementById("fig5_after_click").innerHTML;
                     });
-
+            
                 elem_updated
                     .append("text")
                     .attr("text-anchor", "middle")
@@ -305,12 +297,12 @@ $(document).ready(function () {
                         else return d["Release Date"];
                     })
                     .on("click", function (e, d) {
-                        d3.selectAll("circle")
+                        d3.selectAll(".fig5-circle")
                             .transition()
                             .duration(300)
                             .attr("r", radius)
                             .attr("stroke-width", 0);
-
+            
                         // Increase the radius and stroke width of the clicked bubble for highlighting
                         d3.select(this)
                             .transition()
@@ -329,25 +321,20 @@ $(document).ready(function () {
                             .transition()
                             .duration(300)
                             .attr("r", radius * 1.1);
-                        // let brand = d["Roastery"].toLowerCase().replace(/ /g, "_").replace('.', "_") + '_thumb.png';
-                        // d3.selectAll("#fig3_brand_image").attr(
-                        //     "src",
-                        //     "../../image/brand-logo/" + brand
-                        // );
-
+            
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
                             "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
-
+            
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
                         d3.selectAll("#fig5-subtitle").text(d["Item Subname"]);
-
+            
                         d3.selectAll("#fig5-developers").text(d["Developers"]);
                         d3.selectAll("#fig5-release").text(d["Release Date"]);
                         d3.selectAll("#fig5-genres-show").text(d["Genres"]);
                         d3.selectAll("#fig5-review").text(d["Review"]);
-
+            
                         d3.selectAll("#fig5_price")
                             .select("text")
                             .text(d["Price"]);
@@ -357,13 +344,11 @@ $(document).ready(function () {
                         d3.selectAll("#fig5_recommended")
                             .select("text")
                             .text(d["Wish"]);
-
+            
                         document.getElementById("fig5-descrip").innerHTML =
-                            document.getElementById(
-                                "fig5_after_click"
-                            ).innerHTML;
+                            document.getElementById("fig5_after_click").innerHTML;
                     });
-
+            
                 var simulation = d3
                     .forceSimulation()
                     .force("x", d3.forceX(width / 2).strength(0.1)) // Decrease the strength of the x-axis force
@@ -380,46 +365,47 @@ $(document).ready(function () {
                             return "translate(" + d.x + "," + d.y + ")";
                         });
                     });
-
+            
                 simulation.nodes(curData);
             }
-
+            
             function impl_filter_intial() {
                 // Remove existing elements except for the legend
                 svg.selectAll(".circleContainer, circle, text").remove();
-
+            
                 // Remove existing groups
                 svg.selectAll("g").remove();
-
+            
                 let radius = 30;
                 if (curData.length <= 10) {
                     radius = 40;
                 }
-
+            
                 curData = record;
                 preData = record;
                 createLegend("fig5-show-all");
-
+            
                 let elem_updated = svg
                     .selectAll("g")
                     .data(curData)
                     .enter()
                     .append("g")
                     .attr("class", "circleContainer");
-
+            
                 elem_updated
                     .data(curData)
                     .append("circle")
+                    .attr("class", "fig5-circle")
                     .style("cursor", "pointer")
                     .attr("r", radius)
                     .style("fill", "#C4937A")
                     .on("click", function (e, d) {
-                        d3.selectAll("circle")
+                        d3.selectAll(".fig5-circle")
                             .transition()
                             .duration(300)
                             .attr("r", radius)
                             .attr("stroke-width", 0);
-
+            
                         // Increase the radius and stroke width of the clicked bubble for highlighting
                         d3.select(this)
                             .transition()
@@ -438,25 +424,20 @@ $(document).ready(function () {
                             .transition()
                             .duration(300)
                             .attr("r", radius * 1.1);
-                        // let brand = d["Roastery"].toLowerCase().replace(/ /g, "_").replace('.', "_") + '_thumb.png';
-                        // d3.selectAll("#fig3_brand_image").attr(
-                        //     "src",
-                        //     "../../image/brand-logo/" + brand
-                        // );
-
+            
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
                             "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
-
+            
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
                         d3.selectAll("#fig5-subtitle").text(d["Item Subname"]);
-
+            
                         d3.selectAll("#fig5-developers").text(d["Developers"]);
                         d3.selectAll("#fig5-release").text(d["Release Date"]);
                         d3.selectAll("#fig5-genres-show").text(d["Genres"]);
                         d3.selectAll("#fig5-review").text(d["Review"]);
-
+            
                         d3.selectAll("#fig5_price")
                             .select("text")
                             .text(d["Price"]);
@@ -466,13 +447,11 @@ $(document).ready(function () {
                         d3.selectAll("#fig5_recommended")
                             .select("text")
                             .text(d["Wish"]);
-
+            
                         document.getElementById("fig5-descrip").innerHTML =
-                            document.getElementById(
-                                "fig5_after_click"
-                            ).innerHTML;
+                            document.getElementById("fig5_after_click").innerHTML;
                     });
-
+            
                 elem_updated
                     .append("text")
                     .attr("text-anchor", "middle")
@@ -482,12 +461,12 @@ $(document).ready(function () {
                         return d["Item Name"].substring(0, 3);
                     })
                     .on("click", function (e, d) {
-                        d3.selectAll("circle")
+                        d3.selectAll(".fig5-circle")
                             .transition()
                             .duration(300)
                             .attr("r", radius)
                             .attr("stroke-width", 0);
-
+            
                         // Increase the radius and stroke width of the clicked bubble for highlighting
                         d3.select(this)
                             .transition()
@@ -506,25 +485,20 @@ $(document).ready(function () {
                             .transition()
                             .duration(300)
                             .attr("r", radius * 1.1);
-                        // let brand = d["Roastery"].toLowerCase().replace(/ /g, "_").replace('.', "_") + '_thumb.png';
-                        // d3.selectAll("#fig3_brand_image").attr(
-                        //     "src",
-                        //     "../../image/brand-logo/" + brand
-                        // );
-
+            
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
                             "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
-
+            
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
                         d3.selectAll("#fig5-subtitle").text(d["Item Subname"]);
-
+            
                         d3.selectAll("#fig5-developers").text(d["Developers"]);
                         d3.selectAll("#fig5-release").text(d["Release Date"]);
                         d3.selectAll("#fig5-genres-show").text(d["Genres"]);
                         d3.selectAll("#fig5-review").text(d["Review"]);
-
+            
                         d3.selectAll("#fig5_price")
                             .select("text")
                             .text(d["Price"]);
@@ -534,13 +508,11 @@ $(document).ready(function () {
                         d3.selectAll("#fig5_recommended")
                             .select("text")
                             .text(d["Wish"]);
-
+            
                         document.getElementById("fig5-descrip").innerHTML =
-                            document.getElementById(
-                                "fig5_after_click"
-                            ).innerHTML;
+                            document.getElementById("fig5_after_click").innerHTML;
                     });
-
+            
                 var simulation = d3
                     .forceSimulation()
                     .force("x", d3.forceX(width / 2).strength(0.1)) // Decrease the strength of the x-axis force
@@ -557,9 +529,9 @@ $(document).ready(function () {
                             return "translate(" + d.x + "," + d.y + ")";
                         });
                     });
-
+            
                 simulation.nodes(curData);
-            }
+            }            
 
             // Function to toggle button animation
             function toggleButtonAnimation(button) {

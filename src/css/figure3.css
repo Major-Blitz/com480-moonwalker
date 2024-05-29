@@ -67,7 +67,7 @@ body {
     display: none;
 }
 
-.card-header {
+.fig3-card-header {
     background: linear-gradient(to right, blue 50%, red 50%);
     border-radius: 12px 12px 0 0;
     padding: 15px;
@@ -79,7 +79,7 @@ body {
     justify-content: center;
 }
 
-.card-header h2 {
+.fig3-card-header h2 {
     font-family: 'Press Start 2P', cursive;
     font-size: 17px;
     margin: 0;

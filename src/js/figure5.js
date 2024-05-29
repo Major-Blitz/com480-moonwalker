@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Define the legend data
-    d3.csv("../../datasets/game_items_filtering.csv").then(
+    d3.csv("datasets/game_items_filtering.csv").then(
         function (data) {
             const record = JSON.parse(JSON.stringify(data));
             var curData = data;
@@ -264,7 +264,7 @@ $(document).ready(function () {
 
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
-                            "../../images/game-item-figs/" + d["Item Name"] + ".jpg"
+                            "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
 
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
@@ -337,7 +337,7 @@ $(document).ready(function () {
 
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
-                            "../../images/game-item-figs/" + d["Item Name"] + ".jpg"
+                            "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
 
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
@@ -446,7 +446,7 @@ $(document).ready(function () {
 
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
-                            "../../images/game-item-figs/" + d["Item Name"] + ".jpg"
+                            "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
 
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);
@@ -514,7 +514,7 @@ $(document).ready(function () {
 
                         d3.selectAll("#fig5_item_image").attr(
                             "src",
-                            "../../images/game-item-figs/" + d["Item Name"] + ".jpg"
+                            "images/game-item-figs/" + d["Item Name"] + ".jpg"
                         );
 
                         d3.selectAll("#fig5-title h3").text(d["Item Name"]);

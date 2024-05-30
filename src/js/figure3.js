@@ -22,6 +22,21 @@ const page3Colors = [
     '#33aaff'  // bright light blue
 ];
 
+const platformColours = [
+    "#ff6f61",
+    "#67c2b0",
+    "#ffb74d",
+    "#81cfe0",
+    "#ffd369",
+    "#8aa29e",
+    "#b2dfdb",
+    "#ffab91",
+    "#9fa8da",
+    "#ffcc80",
+    "#4db6ac",
+    "#b39ddb"
+];
+
 const details = {
     "PS": {
         description: "The PlayStation (PS) is a home video game console developed and marketed by Sony Computer Entertainment.",
@@ -279,8 +294,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .enter().append("path")
         .attr("d", ribbon)
         .attr("class", "ribbon")
-        .style("fill", d => page3Colors[d.source.index % page3Colors.length])
-        .style("stroke", d => d3.rgb(page3Colors[d.source.index % page3Colors.length]).darker())
+        .style("fill", d => platformColours[d.source.index % platformColours.length])
+        .style("stroke", d => d3.rgb(platformColours[d.source.index % platformColours.length]).darker())
         .on("click", chordClickHandler)
         .on("mouseover", chordMouseMove)
         .on("mouseout", mouseout);
@@ -293,8 +308,8 @@ function updateChordDiagram(matrix, genres, platforms) {
         .attr("class", "group");
 
     groups.append("path")
-        .style("fill", d => page3Colors[d.index % page3Colors.length])
-        .style("stroke", d => d3.rgb(page3Colors[d.index % page3Colors.length]).darker())
+        .style("fill", d => platformColours[d.index % platformColours.length])
+        .style("stroke", d => d3.rgb(platformColours[d.index % platformColours.length]).darker())
         .attr("d", arc);
 
     groups.append("text")

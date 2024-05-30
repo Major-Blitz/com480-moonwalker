@@ -34,7 +34,9 @@ const platformColours = [
     "#9fa8da",
     "#ffcc80",
     "#4db6ac",
-    "#b39ddb"
+    "#b39ddb",
+    "#ff8a65",
+    "#80cbc4",
 ];
 
 const details = {

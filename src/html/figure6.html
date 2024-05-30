@@ -23,21 +23,7 @@ crossorigin="anonymous"
 referrerpolicy="no-referrer"
 />
 <style>
-  body {
-    background-image: url('gifs/animation-ramen.gif'); /* Path to your GIF */
-    background-size: cover; /* Cover the entire page */
-    background-attachment: fixed; /* Stay fixed during scrolling */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-position: center; /* Center the background image */
-    display: flex; /* Use flexbox to split the layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default margin */
-    color: black; /* Text color */
-  }
-
-  .content {
+  .fig6-content {
     background-color: rgba(255, 255, 255, 0.7); /* White background with 50% transparency */
     padding: 20px; /* Padding around the text */
     border-radius: 10px; /* Rounded corners for the box */
@@ -48,7 +34,7 @@ referrerpolicy="no-referrer"
     justify-content: center; /* Center content vertically */
   }
 
-  #leftPart, #rightPart {
+  #fig6-leftPart, #fig6-rightPart {
     flex: 1; /* Take up equal space */
     display: flex;
     justify-content: center;
@@ -56,19 +42,19 @@ referrerpolicy="no-referrer"
     height: 80%; /* Adjust height as necessary */
   }
 
-  img {
+  .fig6-image {
     max-width: 40%; /* Limit image width */
     max-height: 40%; /* Limit image height */
     margin-bottom: 10px; /* Space between image and buttons */
   }
 
-  .button-container {
+  .fig6-button-container {
     display: flex; /* Use flexbox for the button container */
     justify-content: space-between; /* Space out buttons evenly */
     width: 100%; /* Full width to spread out buttons */
   }
 
-  .fig5_button {
+  .fig6_button {
     box-sizing: border-box;
     width: 60%;
     height: 3vw;
@@ -94,22 +80,22 @@ referrerpolicy="no-referrer"
 
 </style>
 </head>
-<body>
-<div id="leftPart">
-  <div class="content">
+
+<div id="fig6-leftPart">
+  <div class="fig6-content">
     <h1 id="chart-title">Game Show</h1>
     <p class="default-info">At the end of this journey into the gaming world, 
       let's enjoy the charm of some of the best games in the world. We hope 
       you will always be like the characters in the game, brave, upright, 
       optimistic and full of fantasy</p>
-    <img id="imageDisplay" src="images/game-item-figs/Genshin.jpg" alt="Related Image">
-    <div class="button-container">
-      <button class="fig5_button" onclick="changeContent(-1)">Previous</button>
-      <button class="fig5_button" onclick="changeContent(1)">Next</button>
+    <img class="fig6-image" id="imageDisplay" src="images/game-item-figs/Genshin.jpg" alt="Related Image">
+    <div class="fig6-button-container">
+      <button class="fig6_button" onclick="changeContent(-1)">Previous</button>
+      <button class="fig6_button" onclick="changeContent(1)">Next</button>
     </div>
   </div>
 </div>
-<div id="rightPart">
+<div id="fig6-rightPart">
   <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
@@ -144,5 +130,4 @@ referrerpolicy="no-referrer"
   }
 </script>
 
-</body>
 </html>

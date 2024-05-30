@@ -337,13 +337,13 @@ $(document).ready(function () {
             
                         d3.selectAll("#fig5_price")
                             .select("text")
-                            .text(d["Price"]);
+                            .text(d["Price"] + '💰');
                         d3.selectAll("#fig5_rating")
                             .select("text")
-                            .text(d["Rating"] + "/5.0");
+                            .text(d["Rating"] + "/5.0" + '🌟');
                         d3.selectAll("#fig5_recommended")
                             .select("text")
-                            .text(d["Wish"]);
+                            .text(d["Wish"] + '❤️');
             
                         document.getElementById("fig5-descrip").innerHTML =
                             document.getElementById("fig5_after_click").innerHTML;
@@ -440,13 +440,13 @@ $(document).ready(function () {
             
                         d3.selectAll("#fig5_price")
                             .select("text")
-                            .text(d["Price"]);
+                            .text(d["Price"] + '💰');
                         d3.selectAll("#fig5_rating")
                             .select("text")
-                            .text(d["Rating"] + "/5.0");
+                            .text(d["Rating"] + "/5.0" + '🌟');
                         d3.selectAll("#fig5_recommended")
                             .select("text")
-                            .text(d["Wish"]);
+                            .text(d["Wish"] + '❤️');
             
                         document.getElementById("fig5-descrip").innerHTML =
                             document.getElementById("fig5_after_click").innerHTML;
@@ -501,13 +501,13 @@ $(document).ready(function () {
             
                         d3.selectAll("#fig5_price")
                             .select("text")
-                            .text(d["Price"]);
+                            .text(d["Price"] + '💰');
                         d3.selectAll("#fig5_rating")
                             .select("text")
-                            .text(d["Rating"] + "/5.0");
+                            .text(d["Rating"] + "/5.0" + '🌟');
                         d3.selectAll("#fig5_recommended")
                             .select("text")
-                            .text(d["Wish"]);
+                            .text(d["Wish"] + '❤️');
             
                         document.getElementById("fig5-descrip").innerHTML =
                             document.getElementById("fig5_after_click").innerHTML;

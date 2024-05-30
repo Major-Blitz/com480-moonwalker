@@ -17,7 +17,7 @@ $(document).ready(function () {
             function createLegend(indicator) {
                 var legendData = [];
                 if (indicator === "fig5-show-all") {
-                    legendData = [{ color: "#C4937A", label: "All Items" }];
+                    legendData = [{ color: "#7f627f", label: "All Games" }];
                 } else if (indicator === "fig5-price") {
                     legendData = [
                         { color: "#EAD8C6", label: "<=30$" },
@@ -209,7 +209,7 @@ $(document).ready(function () {
                     .attr("r", radius)
                     .style("fill", (d) => {
                         if (indicator === "fig5-show-all") {
-                            return "#F2D076";
+                            return "#7f627f";
                         } else if (indicator === "fig5-price") {
                             if (d.Price <= 15) return "#EAD8C6";
                             else if (d.Price <= 25) return "#ff8e8e";

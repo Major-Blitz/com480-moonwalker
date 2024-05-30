@@ -64,7 +64,7 @@ referrerpolicy="no-referrer"
 
   .fig6-button-container {
     display: flex; /* Use flexbox for the button container */
-    justify-content: space-between; /* Space out buttons evenly */
+    justify-content: center; /* Center the buttons horizontally */
     width: 100%; /* Full width to spread out buttons */
   }
 
@@ -72,7 +72,7 @@ referrerpolicy="no-referrer"
     box-sizing: border-box;
     width: 60%;
     height: 3vw;
-    background: linear-gradient(to bottom right, #bd9481, #bd9481);
+    background: linear-gradient(to bottom right, #81a2bd, #8190bd);
     border: 0;
     border-radius: 12px;
     color: #f7f6f3;
@@ -104,9 +104,9 @@ referrerpolicy="no-referrer"
       the best games in the world. We hope you will always be like the characters in 
       the game, brave, upright, optimistic and full of fantasy</div>
     <img class="fig6-image" id="imageDisplay" src="images/game-item-figs/Genshin.jpg" alt="Related Image">
+    <div id="gameName" style="font-size:20px; margin-bottom:10px;">Genshin</div>
     <div class="fig6-button-container">
-      <button class="fig6_button" onclick="changeContent(-1)">Previous</button>
-      <button class="fig6_button" onclick="changeContent(1)">Next</button>
+      <button class="fig6_button" onclick="recommendGame()">Recommend</button>
     </div>
   </div>
 </div>
@@ -146,17 +146,15 @@ referrerpolicy="no-referrer"
   ];
   var currentContent = 0; 
 
-  function changeContent(direction) {
-    currentContent += direction; 
-
-    if (currentContent >= videos.length) {
-      currentContent = 0;
-    } else if (currentContent < 0) {
-      currentContent = videos.length - 1;
+  function recommendGame() {
+    let previousContent = currentContent;
+    while (currentContent === previousContent) {
+      currentContent = Math.floor(Math.random() * videos.length);
     }
 
     document.getElementById('videoPlayer').src = videos[currentContent] + '?autoplay=1';
     document.getElementById('imageDisplay').src = imgs[currentContent];
+    document.getElementById('gameName').textContent = imgs[currentContent].split('/')[2].split('.')[0];
   }
 </script>
 

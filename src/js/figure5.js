@@ -20,29 +20,29 @@ $(document).ready(function () {
                     legendData = [{ color: "#7f627f", label: "All Games" }];
                 } else if (indicator === "fig5-price") {
                     legendData = [
-                        { color: "#EAD8C6", label: "<=30$" },
-                        { color: "#ff8e8e", label: "<=50$" },
-                        { color: "#ea4242", label: ">50$" },
+                        { color: "#ff6f61", label: "<=30$" },
+                        { color: "#67c2b0", label: "<=50$" },
+                        { color: "#ffb74d", label: ">50$" },
                     ];
                 } else if (indicator === "fig5-rating") {
                     legendData = [
-                        { color: "#F1C3C1", label: ">=4.5❤" },
-                        { color: "#9C3F4A", label: ">=4❤" },
-                        { color: "#F2D076", label: ">=3.5❤" },
-                        { color: "#C0AA9B", label: "<3.5❤" },
+                        { color: "#b2dfdb", label: ">=4.5❤" },
+                        { color: "#ffab91", label: ">=4❤" },
+                        { color: "#9fa8da", label: ">=3.5❤" },
+                        { color: "#ffcc80", label: "<3.5❤" },
                     ];
                 } else if (indicator === "fig5-genres") {
                     legendData = [
-                        { color: "#A6AD95", label: "Adventure" },
-                        { color: "#F2D076", label: "Puzzle" },
-                        { color: "#7A8279", label: "RPG" },
-                        { color: "#C0AA9B", label: "Shooter" },
+                        { color: "#4db6ac", label: "Adventure" },
+                        { color: "#b39ddb", label: "Puzzle" },
+                        { color: "#67c2b0", label: "RPG" },
+                        { color: "#ffb74d", label: "Shooter" },
                     ];
                 } else {
                     legendData = [
-                        { color: "#B0836D", label: ">=2020" },
-                        { color: "#fdc62f", label: ">=2010" },
-                        { color: "#865E54", label: "<2010" },
+                        { color: "#81cfe0", label: ">=2020" },
+                        { color: "#ffd369", label: ">=2010" },
+                        { color: "#8aa29e", label: "<2010" },
                     ];
                 }
 
@@ -94,57 +94,57 @@ $(document).ready(function () {
                     return;
                 } else if (indicator === "fig5-price") {
                     curData = curData.filter(function (d) {
-                        if (selectedColor === "#EAD8C6" && d.Price <= 30)
+                        if (selectedColor === "#ff6f61" && d.Price <= 30)
                             return true;
                         else if (
-                            selectedColor === "#ff8e8e" &&
+                            selectedColor === "#67c2b0" &&
                             d.Price <= 50 &&
                             d.Price > 30
                         )
                             return true;
-                        else if (selectedColor === "#ea4242" && d.Price > 50)
+                        else if (selectedColor === "#ffb74d" && d.Price > 50)
                             return true;
                         else return false;
                     });
                 } else if (indicator === "fig5-rating") {
                     curData = curData.filter(function (d) {
-                        if (selectedColor === "#F1C3C1" && d.Rating >= 4.5)
+                        if (selectedColor === "#b2dfdb" && d.Rating >= 4.5)
                             return true;
                         else if (
-                            selectedColor === "#9C3F4A" &&
+                            selectedColor === "#ffab91" &&
                             d.Rating >= 4 &&
                             d.Rating < 4.5
                         )
                             return true;
                         else if (
-                            selectedColor === "#F2D076" &&
+                            selectedColor === "#9fa8da" &&
                             d.Rating >= 3.5 &&
                             d.Rating < 4
                         )
                             return true;
-                        else if (selectedColor === "#C0AA9B" && d.Rating < 3.5)
+                        else if (selectedColor === "#ffcc80" && d.Rating < 3.5)
                             return true;
                         else return false;
                     });
                 } else if (indicator === "fig5-genres") {
                     curData = curData.filter(function (d) {
                         if (
-                            selectedColor === "#A6AD95" &&
+                            selectedColor === "#4db6ac" &&
                             d["Genres"] === "Adventure"
                         )
                             return true;
                         else if (
-                            selectedColor === "#F2D076" &&
+                            selectedColor === "#b39ddb" &&
                             d["Genres"] === "Puzzle"
                         )
                             return true;
                         else if (
-                            selectedColor === "#7A8279" &&
+                            selectedColor === "#67c2b0" &&
                             d["Genres"] === "RPG"
                         )
                             return true;
                         else if (
-                            selectedColor === "#C0AA9B" &&
+                            selectedColor === "#ffb74d" &&
                             d["Genres"] === "Shooter"
                         )
                             return true;
@@ -153,18 +153,18 @@ $(document).ready(function () {
                 } else if (indicator === "fig5-release-year") {
                     curData = curData.filter(function (d) {
                         if (
-                            selectedColor === "#B0836D" &&
+                            selectedColor === "#81cfe0" &&
                             d["Release Date"] >= 2020
                         )
                             return true;
                         else if (
-                            selectedColor === "#fdc62f" &&
+                            selectedColor === "#ffd369" &&
                             d["Release Date"] >= 2010 &&
                             d["Release Date"] < 2020
                         )
                             return true;
                         else if (
-                            selectedColor === "#865E54" &&
+                            selectedColor === "#8aa29e" &&
                             d["Release Date"] < 2010
                         )
                             return true;
@@ -211,23 +211,23 @@ $(document).ready(function () {
                         if (indicator === "fig5-show-all") {
                             return "#7f627f";
                         } else if (indicator === "fig5-price") {
-                            if (d.Price <= 15) return "#EAD8C6";
-                            else if (d.Price <= 25) return "#ff8e8e";
-                            else return "#ea4242";
+                            if (d.Price <= 15) return "#ff6f61";
+                            else if (d.Price <= 25) return "#67c2b0";
+                            else return "#ffb74d";
                         } else if (indicator === "fig5-rating") {
-                            if (d.Rating >= 4.5) return "#F1C3C1";
-                            else if (d.Rating >= 4) return "#9C3F4A";
-                            else if (d.Rating >= 3.5) return "#F2D076";
-                            else return "#C0AA9B";
+                            if (d.Rating >= 4.5) return "#b2dfdb";
+                            else if (d.Rating >= 4) return "#ffab91";
+                            else if (d.Rating >= 3.5) return "#9fa8da";
+                            else return "#ffcc80";
                         } else if (indicator === "fig5-genres") {
-                            if (d["Genres"] === "Adventure") return "#A6AD95";
-                            else if (d["Genres"] === "Puzzle") return "#F2D076";
-                            else if (d["Genres"] === "RPG") return "#7A8279";
-                            else return "#C0AA9B";
+                            if (d["Genres"] === "Adventure") return "#4db6ac";
+                            else if (d["Genres"] === "Puzzle") return "#b39ddb";
+                            else if (d["Genres"] === "RPG") return "#67c2b0";
+                            else return "#ffb74d";
                         } else if (indicator === "fig5-release-year") {
-                            if (d["Release Date"] >= 2020) return "#B0836D";
-                            else if (d["Release Date"] >= 2010) return "#fdc62f";
-                            else return "#865E54";
+                            if (d["Release Date"] >= 2020) return "#81cfe0";
+                            else if (d["Release Date"] >= 2010) return "#ffd369";
+                            else return "#8aa29e";
                         }
                     })
                     .on("click", function (e, d) {
@@ -271,13 +271,13 @@ $(document).ready(function () {
             
                         d3.selectAll("#fig5_price")
                             .select("text")
-                            .text(d["Price"]);
+                            .text(d["Price"] + '💰');
                         d3.selectAll("#fig5_rating")
                             .select("text")
-                            .text(d["Rating"] + "/5.0");
+                            .text(d["Rating"] + "/5.0" + '🌟');
                         d3.selectAll("#fig5_recommended")
                             .select("text")
-                            .text(d["Wish"]);
+                            .text(d["Wish"] + '❤️');
             
                         document.getElementById("fig5-descrip").innerHTML =
                             document.getElementById("fig5_after_click").innerHTML;
@@ -398,7 +398,7 @@ $(document).ready(function () {
                     .attr("class", "fig5-circle")
                     .style("cursor", "pointer")
                     .attr("r", radius)
-                    .style("fill", "#C4937A")
+                    .style("fill", "#7f627f")
                     .on("click", function (e, d) {
                         d3.selectAll(".fig5-circle")
                             .transition()

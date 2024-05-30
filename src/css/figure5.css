@@ -33,7 +33,7 @@
 
 .fig5-button {
   display: inline-block;
-  background-color: #f2efeb;
+  background-color: #e0e4e8; /* Light grey */
   padding: 1px 2px;
   margin: 5px;
   color: #333;
@@ -69,53 +69,53 @@
 }
 
 #fig5-show-all {
-  color: #3e3b38;
+  color: #2a5f75; /* Dark blue */
 }
 
 #fig5-show-all:hover {
-  color: #f2efeb;
-  background-color: #3e3b38;
+  color: #e0e4e8;
+  background-color: #2a5f75;
 }
 
 #fig5-price {
-  color: #9c3f4a;
+  color: #4c8098; /* Soft blue */
 }
 
 #fig5-price:hover {
-  color: #f2efeb;
-  background-color: #9c3f4a;
+  color: #e0e4e8;
+  background-color: #4c8098;
 }
 
 #fig5-rating {
-  color: #f2d076;
+  color: #5ba4cf; /* Sky blue */
 }
 
 #fig5-rating:hover {
-  color: #f2efeb;
-  background-color: #f2d076;
+  color: #e0e4e8;
+  background-color: #5ba4cf;
 }
 
 #fig5-genres {
-  color: #c0aa9b;
+  color: #6d869f; /* Slate blue */
 }
 
 #fig5-genres:hover {
-  color: #f2efeb;
-  background-color: #c0aa9b;
+  color: #e0e4e8;
+  background-color: #6d869f;
 }
 
 #fig5-release-year {
-  color: #ad6d52;
+  color: #748898; /* Cool grey */
 }
 
 #fig5-release-year:hover {
-  color: #f2efeb;
-  background-color: #ad6d52;
+  color: #e0e4e8;
+  background-color: #748898;
 }
 
 .flicker-animation {
-  background: linear-gradient(45deg, #bd3737, #e67474);
-  color: #f2efeb !important;
+  background: linear-gradient(45deg, #3d707e, #65a9bf); /* Transition from deep blue-green to lighter blue */
+  color: #e0e4e8 !important;
   padding: 1px 15px 1px;
   animation: color-change 4s infinite alternate;
 }

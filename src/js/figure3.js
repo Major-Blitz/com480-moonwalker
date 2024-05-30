@@ -23,21 +23,25 @@ const page3Colors = [
 ];
 
 const platformColours = [
-    "#ff6f61",
-    "#67c2b0",
-    "#ffb74d",
-    "#81cfe0",
-    "#ffd369",
-    "#8aa29e",
-    "#b2dfdb",
-    "#ffab91",
-    "#9fa8da",
-    "#ffcc80",
-    "#4db6ac",
-    "#b39ddb",
-    "#ff8a65",
-    "#80cbc4",
+    "#ff6f61",  // Coral
+    "#67c2b0",  // Light Green
+    "#ffb74d",  // Light Orange
+    "#81cfe0",  // Light Blue
+    "#ffd369",  // Light Gold
+    "#8aa29e",  // Grayish Green
+    "#b2dfdb",  // Light Cyan
+    "#ffab91",  // Light Salmon
+    "#9fa8da",  // Light Lavender
+    "#87CEFA",  // Light Sky Blue (替换一个接近的颜色)
+    "#4db6ac",  // Light Teal
+    "#b39ddb",  // Light Purple
+    "#ff8a65",  // Light Coral
+    "#80cbc4",  // Light Turquoise
+    "#ce93d8",  // Light Purple
+    "#ADD8E6",  // Light Blue
+    "#E6E6FA"   // Lavender
 ];
+
 
 const details = {
     "PS": {

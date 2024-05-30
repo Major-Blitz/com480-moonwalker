@@ -109,15 +109,10 @@
       Strategy: "#b39ddb"
     };
 
-  async function getData(url) {
-    return await d3.csv(url);
+    async function main() {
+    const genreCounts = await d3.csv('datasets/genre-counts-all.csv');
+    drawChart(genreCounts);
   }
-
-  async function main() {
-      const genreCounts = await getData('/datasets/genre-counts-all.csv');
-      drawChart(genreCounts);
-  }
-
 
     function drawChart(genreCounts) {
       const width = 954;

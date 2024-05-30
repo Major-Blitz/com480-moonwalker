@@ -43,13 +43,13 @@ referrerpolicy="no-referrer"
   .fig6-leftPart {
     width: 50%; /* Each part takes up half of the container width */
     height: 80%; /* Optional: Set if you want the parts to take up all vertical space */
-    margin-top: 300px; /* Space between the top of the container and the content */
+    margin-top: 100px; /* Space between the top of the container and the content */
   }
 
   .fig6-leftPart {
     width: 50%; /* Each part takes up half of the container width */
-    height: 80%; /* Optional: Set if you want the parts to take up all vertical space */
-    margin-top: 500px; /* Space between the top of the container and the content */
+    height: 60%; /* Optional: Set if you want the parts to take up all vertical space */
+    margin-top: 100px; /* Space between the top of the container and the content */
   }
 
   .fig6-image {
@@ -88,6 +88,18 @@ referrerpolicy="no-referrer"
     white-space: nowrap;
   }
 
+  .p {
+    font-size: 1.5em;
+    font-family: arial, helvetica;
+    color: #030000;
+  }
+
+  .fig6-video-contrainer {
+    display: flex; /* Enable flexbox within content */
+    align-items: center; /* Center-align children */
+    justify-content: center; /* Center content vertically */
+  }
+
 </style>
 </head>
 
@@ -107,9 +119,11 @@ referrerpolicy="no-referrer"
   </div>
 </div>
 <div class="fig6-rightPart">
-  <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_"
+  <div class="fig6-video-contrainer">
+  <iframe id="videoPlayer" width="460" height="285" src="https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
+  </div>
 </div>
 </div>
 

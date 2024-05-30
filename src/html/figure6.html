@@ -40,9 +40,18 @@ referrerpolicy="no-referrer"
     width: 100%; /* Take full width of the viewport */
   }
 
-  .fig6-leftPart, .fig6-rightPart {
+  .fig6-leftPart {
     width: 50%; /* Each part takes up half of the container width */
-    height: 100%; /* Optional: Set if you want the parts to take up all vertical space */
+    height: 80%; /* Optional: Set if you want the parts to take up all vertical space */
+    margin-top: 20px; /* Space between the top of the container and the content */
+  }
+
+  .fig6-leftPart {
+    width: 50%; /* Each part takes up half of the container width */
+    height: 80%; /* Optional: Set if you want the parts to take up all vertical space */
+    display: flex; /* Enable flexbox within the left part */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
   }
 
   .fig6-image {

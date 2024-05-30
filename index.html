@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game World</title>
-    <base href="https://major-blitz.github.io/com480-moonwalker/">
-    <!-- <base href="../../"> -->
+    <!-- <base href="https://major-blitz.github.io/com480-moonwalker/"> -->
+    <base href="../../">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.22/fullpage.css">
     <link rel="stylesheet" type="text/css" href="examples.css" />
@@ -125,10 +125,12 @@
         <div class="section initial" id="section_figure4"></div>
         <div class="section initial" id="section_figure5"></div>
         <div class="section initial" id="section_figure6"></div>
-        <div class="section" id="section3">
-            <div class="intro">
-                <h1>footer</h1>
-            </div>
+        <div class="section fp-auto-height" id="section_footer">
+            <!-- <span>Powered by</span>
+            <span
+                ><strong>Erchang Ni</strong> &amp;
+                <strong>Jingbang Liu</strong> &amp; <strong>Haotian Wu</strong></span
+            > -->
         </div>
     </div>
     
@@ -141,6 +143,7 @@
             $("#section_figure4").load("src/html/figure4.html");
             $("#section_figure5").load("src/html/figure5.html");
             $("#section_figure6").load("src/html/figure6.html");
+            $("#section_footer").load("src/html/footer.html");
 
             $("#fullpage").fullpage({
                     // Navigation
@@ -148,12 +151,12 @@
                     anchors: [
                         "home",
                         "intro",
-                        "figure1",
-                        "figure2",
-                        "figure3",
-                        "figure4",
-                        "figure5",
-                        "figure6",
+                        "platform",
+                        "game-genres",
+                        "tonality",
+                        "publishers",
+                        "game-selection",
+                        "recommendation",
                         "about",
                     ],
                     slidesNavigation: true,

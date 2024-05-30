@@ -4,20 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Genre Counts Bubble Chart</title>
-  <!-- use "../../" to debug locally, use moonwalker url to deploy on github -->
-  <!-- <base href="https://major-blitz.github.io/com480-moonwalker/"> -->
-  <!-- <base href="../../"> -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://d3js.org/d3.v7.js"></script>
+  <script src="https://unpkg.com/d3-simple-slider"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
     #bubble-chart {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 954px;
+      height: 450px;
     }
     .bubble-chart text {
       pointer-events: none;
@@ -37,15 +44,51 @@
     .refresh-icon:hover {
       fill: #0056b3;
     }
+    #slider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 954px;
+      margin-top: 20px;
+    }
+    #slider {
+      flex-grow: 1;
+      margin-left: 10px;
+    }
+    #play-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #007bff;
+      width: 30px; /* Fixed width to prevent shifting */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #play-button:hover {
+      color: #0056b3;
+    }
+    .d3-slider-tick text {
+      font-size: 15px;
+      transition: font-weight 0.2s;
+    }
+    .d3-slider-tick.active text {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h1 id="chart-title">The popularity among different game genres</h1>
-    <div class="center-justified-text" style="max-width: 800px; margin: 10px auto;">
-      What types of games are the most popular? In this dynamic bubble chart, you can explore the changes in the number of games released in different genres over the years. Does it match your expectations?
+  <div class="center-justified-text" style="max-width: 800px; margin: 10px auto;">
+    What types of games are the most popular? In this dynamic bubble chart, you can explore the changes in the number of games released in different genres over the years. Does it match your expectations?
+  </div>
+  <div id="container">
+    <svg id="bubble-chart"></svg>
+    <div id="slider-container">
+      <button id="play-button">►</button>
+      <div id="slider"></div>
     </div>
-  <div id="app">
-    <svg id="bubble-chart" width="954" height="550"></svg>
   </div>
 
   <script>
@@ -64,16 +107,14 @@
       Strategy: "#b39ddb"
     };
 
-    // Function to fetch data from the provided URL and parse it as CSV
     async function getData(url) {
       const response = await fetch(url);
       const data = await response.text();
       return d3.csvParse(data);
     }
 
-    // Main function to load data and draw the chart
     async function main() {
-      const genreCounts = await getData('datasets/genre-counts.csv');
+      const genreCounts = await getData('/datasets/genre_counts_all.csv');
       drawChart(genreCounts);
     }
 
@@ -81,18 +122,19 @@
       const width = 954;
       const height = 450;
 
-      const years = ["1980", "1985", "1990", "1995", "2000", "2005", "2010"];
+      const years = Array.from({ length: 36 }, (_, i) => (1980 + i).toString());
 
-      const svg = d3.select("#bubble-chart");
+      const svg = d3.select("#bubble-chart")
+        .attr("width", width)
+        .attr("height", height);
 
-      const format = (value) => d3.format(".2s")(value);
+      const format = (value) => d3.format(".0f")(value);
 
-      let yearIndex = 0; // Global variable for the current year index
-      let timeoutIds = []; // Store all setTimeout IDs
+      let yearIndex = 0;
+      let intervalId;
+      let reachedEnd = false;
 
-      function updateChart() {
-        if (yearIndex >= years.length) return; // Exit if the index exceeds the number of years
-
+      function updateChart(yearIndex) {
         const year = years[yearIndex];
         const data = genreCounts
           .map(d => ({
@@ -102,8 +144,8 @@
           }))
           .filter(d => d.value > 0);
 
-        svg.selectAll("g.node").remove(); // Retain the refresh button, only remove node groups
-        svg.selectAll("#year-label").remove(); // Remove existing year labels
+        svg.selectAll("g.node").remove();
+        svg.selectAll("#year-label").remove();
 
         const pack = (data) =>
           d3.pack()
@@ -116,7 +158,8 @@
           .data(root.leaves(), d => d.data.name)
           .join("g")
           .attr("class", "node")
-          .attr("transform", d => `translate(${d.x},${d.y})`);
+          .attr("transform", d => `translate(${d.x},${d.y})`)
+
 
         nodes.append("circle")
           .attr("r", d => d.r)
@@ -139,46 +182,70 @@
           nodes.attr("transform", d => `translate(${d.x},${d.y})`);
         }
 
-        // Add year label
         svg.append("text")
           .attr("id", "year-label")
           .attr("x", width / 2)
-          .attr("y", height + 40)
-          .text(`${year}-${parseInt(year) + 5}`);
+          .attr("y", height + 20)
+          .text(`${year}`);
       }
 
-      function startAnimation() {
-        // Clear all setTimeouts
-        timeoutIds.forEach(id => clearTimeout(id));
-        timeoutIds = []; // Reset timeoutIds
+      function updateChartFromSlider(yearIndex) {
+        updateChart(yearIndex);
+      }
 
-        yearIndex = 0; // Reset yearIndex
-        function step() {
-          updateChart();
-          yearIndex++;
-          if (yearIndex < years.length) {
-            const id = setTimeout(step, 1000);
-            timeoutIds.push(id); // Record setTimeout ID
+      const slider = d3.sliderBottom()
+        .min(0)
+        .max(years.length - 1)
+        .step(1)
+        .width(800)
+        .tickFormat(i => (i % 2 === 0 ? years[i] : '')) // Display every 2nd year
+        .ticks(years.length)
+        .default(0)
+        .on('onchange', val => {
+          yearIndex = val;
+          updateChartFromSlider(yearIndex);
+          // d3.selectAll('.d3-slider-tick').classed('active', false);
+          // d3.select(d3.selectAll('.d3-slider-tick').nodes()[val]).classed('active', true);
+        });
+
+      const gSlider = d3.select('#slider')
+        .append('svg')
+        .attr('width', 900)
+        .attr('height', 100)
+        .append('g')
+        .attr('transform', 'translate(30,30)');
+
+      gSlider.call(slider);
+
+      updateChart(yearIndex);
+
+      d3.select("#play-button").on("click", () => {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+          d3.select("#play-button").html("►");
+        } else {
+          if (reachedEnd) {
+            yearIndex = 0;
+            slider.value(yearIndex);
+            reachedEnd = false;
           }
+          intervalId = setInterval(() => {
+            yearIndex++;
+            if (yearIndex >= years.length) {
+              clearInterval(intervalId);
+              intervalId = null;
+              d3.select("#play-button").html("►");
+              yearIndex = years.length - 1;
+              reachedEnd = true;
+            }
+            slider.value(yearIndex);
+            // d3.selectAll('.d3-slider-tick').classed('active', false);
+            // d3.select(d3.selectAll('.d3-slider-tick').nodes()[yearIndex]).classed('active', true);
+          }, 800);
+          d3.select("#play-button").html("❚❚");
         }
-        step();
-      }
-
-      startAnimation();
-
-      // Add refresh button
-      function addRefreshButton() {
-        svg.selectAll(".refresh-icon").remove(); // Ensure multiple refresh buttons are not added
-
-        svg.append("text")
-          .attr("class", "refresh-icon")
-          .attr("x", width - 30)
-          .attr("y", 30)
-          .text("⟳")
-          .on("click", startAnimation);
-      }
-
-      addRefreshButton();
+      });
     }
 
     main();

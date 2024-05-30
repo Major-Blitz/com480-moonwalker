@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Genre Counts Bubble Chart</title>
-  <base href="https://major-blitz.github.io/com480-moonwalker/">
+  <!-- <base href="https://major-blitz.github.io/com480-moonwalker/"> -->
   <!-- <base href="../../"> -->
   <script src="https://d3js.org/d3.v7.js"></script>
   <script src="https://unpkg.com/d3-simple-slider"></script>
@@ -109,16 +109,15 @@
       Strategy: "#b39ddb"
     };
 
-    async function getData(url) {
-      const response = await fetch(url);
-      const data = await response.text();
-      return d3.csvParse(data);
-    }
+  async function getData(url) {
+    return await d3.csv(url);
+  }
 
-    async function main() {
-      const genreCounts = await getData('/datasets/genre_counts_all.csv');
+  async function main() {
+      const genreCounts = await getData('/datasets/genre-counts-all.csv');
       drawChart(genreCounts);
-    }
+  }
+
 
     function drawChart(genreCounts) {
       const width = 954;

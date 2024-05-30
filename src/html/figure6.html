@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
+integrity="sha256-qS+snwBgqr+iFVpBB58C9UCxKFhyL03YHpZfdNUhSEw="
+crossorigin="anonymous"
+/>
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+crossorigin="anonymous"
+/>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
+crossorigin="anonymous"
+referrerpolicy="no-referrer"
+/>
+<style>
+  body {
+    background-image: url('gifs/animation-ramen.gif'); /* Path to your GIF */
+    background-size: cover; /* Cover the entire page */
+    background-attachment: fixed; /* Stay fixed during scrolling */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center; /* Center the background image */
+    display: flex; /* Use flexbox to split the layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    color: black; /* Text color */
+  }
+
+  .content {
+    background-color: rgba(255, 255, 255, 0.7); /* White background with 50% transparency */
+    padding: 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners for the box */
+    width: 90%; /* Control width */
+    display: flex; /* Enable flexbox within content */
+    flex-direction: column; /* Stack children elements vertically */
+    align-items: center; /* Center-align children */
+    justify-content: center; /* Center content vertically */
+  }
+
+  #leftPart, #rightPart {
+    flex: 1; /* Take up equal space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%; /* Adjust height as necessary */
+  }
+
+  img {
+    max-width: 40%; /* Limit image width */
+    max-height: 40%; /* Limit image height */
+    margin-bottom: 10px; /* Space between image and buttons */
+  }
+
+  .button-container {
+    display: flex; /* Use flexbox for the button container */
+    justify-content: space-between; /* Space out buttons evenly */
+    width: 100%; /* Full width to spread out buttons */
+  }
+
+  .fig5_button {
+    box-sizing: border-box;
+    width: 60%;
+    height: 3vw;
+    background: linear-gradient(to bottom right, #bd9481, #bd9481);
+    border: 0;
+    border-radius: 12px;
+    color: #f7f6f3;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease-in-out;
+    touch-action: manipulation;
+    white-space: nowrap;
+  }
+
+</style>
+</head>
+<body>
+<div id="leftPart">
+  <div class="content">
+    <h1 id="chart-title">Game Show</h1>
+    <p class="default-info">At the end of this journey into the gaming world, 
+      let's enjoy the charm of some of the best games in the world. We hope 
+      you will always be like the characters in the game, brave, upright, 
+      optimistic and full of fantasy</p>
+    <img id="imageDisplay" src="images/game-item-figs/Genshin.jpg" alt="Related Image">
+    <div class="button-container">
+      <button class="fig5_button" onclick="changeContent(-1)">Previous</button>
+      <button class="fig5_button" onclick="changeContent(1)">Next</button>
+    </div>
+  </div>
+</div>
+<div id="rightPart">
+  <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</div>
+
+<script>
+  var videos = [
+    'https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_', 
+    'https://www.youtube.com/embed/fGdPVsTliT8?si=NpYS-l2fsbOj1c-0', 
+    'https://www.youtube.com/embed/wJxNhJ8fjFk?si=AXv0BAvCA3e_ejbS'
+  ];
+  var imgs = [
+  'images/game-item-figs/Genshin.jpg', 
+  'images/game-item-figs/Final Fantasy XV.jpg', 
+  'images/game-item-figs/Nier.jpg'
+  ];
+  var currentContent = 0; // Current content index
+
+  function changeContent(direction) {
+    currentContent += direction; // Increment or decrement the current content index
+
+    // Loop around the array if out of bounds
+    if (currentContent >= videos.length) {
+      currentContent = 0;
+    } else if (currentContent < 0) {
+      currentContent = videos.length - 1;
+    }
+
+    // Update the src for both the video and image
+    document.getElementById('videoPlayer').src = videos[currentContent] + '?autoplay=1';
+    document.getElementById('imageDisplay').src = imgs[currentContent];
+  }
+</script>
+
+</body>
+</html>

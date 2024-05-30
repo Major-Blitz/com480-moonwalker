@@ -34,12 +34,15 @@ referrerpolicy="no-referrer"
     justify-content: center; /* Center content vertically */
   }
 
+  .fig6-container {
+    display: flex; /* Enable flexbox to align children side by side */
+    justify-content: space-between; /* Ensure there is space between the two elements */
+    width: 100%; /* Take full width of the viewport */
+  }
+
   .fig6-leftPart, .fig6-rightPart {
-    flex: 1; /* Take up equal space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%; /* Adjust height as necessary */
+    width: 50%; /* Each part takes up half of the container width */
+    height: 100%; /* Optional: Set if you want the parts to take up all vertical space */
   }
 
   .fig6-image {
@@ -81,7 +84,8 @@ referrerpolicy="no-referrer"
 </style>
 </head>
 
-<div class="column is-one-third">
+<div class="fig6-container">
+<div class="fig6-leftPart">
   <div class="fig6-content">
     <h1 id="chart-title">Game Show</h1>
     <p class="default-info">At the end of this journey into the gaming world, 
@@ -95,10 +99,11 @@ referrerpolicy="no-referrer"
     </div>
   </div>
 </div>
-<div class="column is-two-third">
+<div class="fig6-rightPart">
   <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
+</div>
 </div>
 
 <script>
@@ -128,19 +133,17 @@ referrerpolicy="no-referrer"
   'images/game-item-figs/The Legend of Zelda.jpg',
   'images/game-item-figs/Pokémon Shining Pearl.jpg',
   ];
-  var currentContent = 0; // Current content index
+  var currentContent = 0; 
 
   function changeContent(direction) {
-    currentContent += direction; // Increment or decrement the current content index
+    currentContent += direction; 
 
-    // Loop around the array if out of bounds
     if (currentContent >= videos.length) {
       currentContent = 0;
     } else if (currentContent < 0) {
       currentContent = videos.length - 1;
     }
 
-    // Update the src for both the video and image
     document.getElementById('videoPlayer').src = videos[currentContent] + '?autoplay=1';
     document.getElementById('imageDisplay').src = imgs[currentContent];
   }

@@ -54,6 +54,23 @@ referrerpolicy="no-referrer"
     align-items: center; /* Center the content vertically */
     width: 50%; /* Each part takes up half of the container width */
     height: 100vh; /* Take full height of the viewport */
+    position: relative; /* Position relative for absolute positioning of iframe */
+  }
+
+  .fig6-corner-image {
+    position: absolute; /* Absolute positioning relative to nearest positioned ancestor */
+    max-width: 100px; /* Example fixed width, adjust as needed */
+    max-height: 100px; /* Example fixed height, adjust as needed */
+  }
+
+  .fig6-upper-left {
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+  }
+
+  .fig6-bottom-right {
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
   }
 
   .fig6-image {
@@ -111,9 +128,13 @@ referrerpolicy="no-referrer"
   </div>
 </div>
 <div class="fig6-rightPart">
+  <img src="images/pikachu.png" class="fig6-corner-image fig6-upper-left" alt="Pikachu">
+
   <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/T5-YMslEmxw?si=c7DhXU7fnmL4p5C_"
     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
+
+  <img src="images/treasure.png" class="fig6-corner-image fig6-bottom-right" alt="Treasure">
 </div>
 </div>
 

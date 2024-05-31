@@ -257,7 +257,7 @@ function updateChordDiagram(matrix, genres, platforms) {
 
     console.log("Width:", width, "Height:", height);
 
-    const outerRadius = Math.min(width, height) / 2 - Math.max(margin.top + margin.bottom, margin.left + margin.right);
+    const outerRadius = Math.min(width, height) / 2 - Math.max(margin.top + margin.bottom, margin.left + margin.right) - 30;
     const innerRadius = outerRadius - 20;
 
     if (outerRadius <= 0 || innerRadius <= 0) {

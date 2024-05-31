@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Genre Counts Bubble Chart</title>
-  <!-- <base href="https://major-blitz.github.io/com480-moonwalker/"> -->
-  <!-- <base href="../../"> -->
   <script src="https://d3js.org/d3.v7.js"></script>
   <script src="https://unpkg.com/d3-simple-slider"></script>
   <style>
@@ -67,13 +65,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transform: translateY(-20px);
     }
     #play-button:hover {
       color: #0056b3;
     }
-    .d3-slider-tick text {
-      font-size: 15px;
-      transition: font-weight 0.2s;
+    .d3-slider-tick text,
+    .parameter-value text {
+      font-size: 20px !important; /* Force font size to 20px */
     }
     .d3-slider-tick.active text {
       font-weight: bold;
@@ -110,9 +109,9 @@
     };
 
     async function main() {
-    const genreCounts = await d3.csv('datasets/genre-counts-all.csv');
-    drawChart(genreCounts);
-  }
+      const genreCounts = await d3.csv('datasets/genre-counts-all.csv');
+      drawChart(genreCounts);
+    }
 
     function drawChart(genreCounts) {
       const width = 954;
@@ -200,8 +199,8 @@
         .on('onchange', val => {
           yearIndex = val;
           updateChartFromSlider(yearIndex);
-          // d3.selectAll('.d3-slider-tick').classed('active', false);
-          // d3.select(d3.selectAll('.d3-slider-tick').nodes()[val]).classed('active', true);
+          d3.selectAll('.d3-slider-tick').classed('active', false);
+          d3.select(d3.selectAll('.d3-slider-tick').nodes()[val]).classed('active', true);
         });
 
       const gSlider = d3.select('#slider')
@@ -236,8 +235,8 @@
               reachedEnd = true;
             }
             slider.value(yearIndex);
-            // d3.selectAll('.d3-slider-tick').classed('active', false);
-            // d3.select(d3.selectAll('.d3-slider-tick').nodes()[yearIndex]).classed('active', true);
+            d3.selectAll('.d3-slider-tick').classed('active', false);
+            d3.select(d3.selectAll('.d3-slider-tick').nodes()[yearIndex]).classed('active', true);
           }, 800);
           d3.select("#play-button").html("❚❚");
         }
